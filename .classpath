@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/org.restlet.ext.jackson.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/org.restlet.ext.servlet.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/org.restlet.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/scribe-1.3.0.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
