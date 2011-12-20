@@ -1,13 +1,11 @@
 package com.zylman.alex;
 
-import java.io.IOException;
-import javax.servlet.http.*;
+import org.restlet.resource.Get;
+import org.restlet.resource.ServerResource;
 
-@SuppressWarnings("serial")
-public class MeServlet extends HttpServlet {
-	public void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws IOException {
-		resp.setContentType("text/plain");
-		resp.getWriter().println("Hello, world");
+public class MeServlet extends ServerResource {
+	@Get
+	public String retrieve() {
+		return "Hello, world";
 	}
 }
