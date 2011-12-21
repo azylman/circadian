@@ -6,6 +6,14 @@ $(document).ready(function() {
 			updateProfile(data.person);
 		}
 	});
+	
+	$.ajax({
+		url: "/twitter",
+		dataType: "html",
+		success: function(data) {
+			$("#feed").html(data);
+		}
+	});
 });
 
 // first-name, last-name, headline, location:(name), industry, summary
@@ -86,7 +94,7 @@ function createPosition(position) {
 	var result = "<div>";
 	result += getDate(position["start-date"]);
 	result += " - ";
-	if (position["is-current"] == true) {
+	if (position["is-current"] == "true") {
 		result += "present";
 	} else {
 		result += getDate(position["end-date"]);
@@ -103,6 +111,7 @@ function createPosition(position) {
 
 function getDate(date) {
 	var result = "";
+	if (date == null) return result;
 	if (date["month"] != null) {
 		result += date["month"] += "-";
 	}
