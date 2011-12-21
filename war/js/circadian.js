@@ -136,6 +136,12 @@ function createPosition(position) {
 	var result = "<div>";
 	
 	result += "<div>";
+	result += position["title"];
+	result += " @ ";
+	result += position["company"]["name"];
+	result += "</div>";
+
+	result += "<div>";
 	result += getDate(position["start-date"]);
 	result += " - ";
 	if (position["is-current"] == "true") {
@@ -146,12 +152,6 @@ function createPosition(position) {
 	result += "</div>";
 	
 	result += "<div>";
-	result += position["title"];
-	result += " @ ";
-	result += position["company"]["name"];
-	result += "</div>";
-	
-	result += "<div>";
 	result += position["summary"];
 	result += "</div>";
 	
@@ -159,19 +159,19 @@ function createPosition(position) {
 	return result;
 }
 
-function getDate(date) {
+function getDate(time) {
 	var result = "";
-	if (date == null) return result;
-	if (date["month"] != null) {
-		result += date["month"] += "-";
+	if (time == null) return result;
+	if (time["day"] != null) {
+		result += time["day"] += "-";
 	}
-	if (date["day"] != null) {
-		result += date["day"] += "-";
+	if (time["month"] != null) {
+		result += time["month"] += "-";
 	}
-	if (date["year"] != null) {
-		result += date["year"];
+	if (time["year"] != null) {
+		result += time["year"];
 	}
-	return result;
+	return date("M Y", result);
 }
 
 function compileEducation(education) {
@@ -180,13 +180,7 @@ function compileEducation(education) {
 
 function createEducation(education) {
 	var result = "<div>";
-	
-	result += "<div>";
-	result += getDate(education["start-date"]);
-	result += " - ";
-	result += getDate(education["end-date"]);
-	result += "</div>";
-	
+
 	result += "<div>";
 	result += education["school-name"];
 	result += "</div>";
@@ -197,6 +191,12 @@ function createEducation(education) {
 	result += education["field-of-study"];
 	result += "</div>";
 	
+	result += "<div>";
+	result += getDate(education["start-date"]);
+	result += " - ";
+	result += getDate(education["end-date"]);
+	result += "</div>";
+		
 	result += "<div>";
 	result += "Activities: ";
 	result += education["activities"];
