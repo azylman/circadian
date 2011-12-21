@@ -1,14 +1,27 @@
 $(document).ready(function() {
+	// Pull LinkedIn data from the cache for speed.
 	$.ajax({
 		url: "/linkedin",
+		type: "get",
 		dataType: "json",
 		success: function(data) {
 			updateProfile(data.person);
+			
+			// Refresh the cache for freshness.
+			$.ajax({
+				url: "/linkedin",
+				type: "put",
+				dataType: "json",
+				success: function(data) {
+					updateProfile(data.person);
+				}
+			});
 		}
 	});
 	
 	$.ajax({
 		url: "/twitter",
+		type: "get",
 		dataType: "json",
 		success: function(data) {
 			updateFeed(data);
@@ -34,6 +47,7 @@ function addFeedEntry(entry) {
 	result += entry["time"];
 	result += " via ";
 	result += source[entry["source"]];
+	result += "</div>";
 	
 	return result;
 }
@@ -63,7 +77,13 @@ function updateProfile(me) {
 }
 
 function updateIfDifferent(location, content) {
-	if (location.html() != content) {
+	// Compensate for any issues with browser encoding etc. by creating an actual element
+	// e.g. AT&T becomes AT&amp;T
+	// If we didn't do this those would not compare properly and it would falsely update
+	var element = $(document.createElement("div"));
+	element.html(content);
+	
+	if (location.html() != element.html()) {
 		updateContent(location, content);
 	} else {
 		hideIfEmpty(location);
@@ -114,6 +134,8 @@ function compilePositions(positions) {
 
 function createPosition(position) {
 	var result = "<div>";
+	
+	result += "<div>";
 	result += getDate(position["start-date"]);
 	result += " - ";
 	if (position["is-current"] == "true") {
@@ -121,12 +143,18 @@ function createPosition(position) {
 	} else {
 		result += getDate(position["end-date"]);
 	}
-	result += "<br />";
+	result += "</div>";
+	
+	result += "<div>";
 	result += position["title"];
 	result += " @ ";
 	result += position["company"]["name"];
-	result += "<br />";
+	result += "</div>";
+	
+	result += "<div>";
 	result += position["summary"];
+	result += "</div>";
+	
 	result += "</div>";
 	return result;
 }
@@ -152,17 +180,28 @@ function compileEducation(education) {
 
 function createEducation(education) {
 	var result = "<div>";
+	
+	result += "<div>";
 	result += getDate(education["start-date"]);
 	result += " - ";
 	result += getDate(education["end-date"]);
-	result += "<br />";
+	result += "</div>";
+	
+	result += "<div>";
 	result += education["school-name"];
-	result += "<br />";
+	result += "</div>";
+	
+	result += "<div>";
 	result += education["degree"];
 	result += " in ";
 	result += education["field-of-study"];
-	result += "<br />";
+	result += "</div>";
+	
+	result += "<div>";
 	result += "Activities: ";
 	result += education["activities"];
+	result += "</div>";
+	
+	result += "</div>";
 	return result;
 }
