@@ -9,12 +9,34 @@ $(document).ready(function() {
 	
 	$.ajax({
 		url: "/twitter",
-		dataType: "html",
+		dataType: "json",
 		success: function(data) {
-			$("#feed").html(data);
+			updateFeed(data);
 		}
 	});
 });
+
+function updateFeed(feed) {
+	var result = "";
+	for (entry in feed) {
+		result += addFeedEntry(feed[entry]);
+	}
+	$("#feed").html(result);
+}
+
+function addFeedEntry(entry) {
+	var source = new Array();
+	source["0"] = "Twitter";
+	
+	var result = "<div>";
+	result += entry["content"];
+	result += "<br />";
+	result += entry["time"];
+	result += " via ";
+	result += source[entry["source"]];
+	
+	return result;
+}
 
 // first-name, last-name, headline, location:(name), industry, summary
 // specialties, honors, interests, positions, publications, patents
