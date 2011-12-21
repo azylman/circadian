@@ -133,15 +133,15 @@ function compilePositions(positions) {
 }
 
 function createPosition(position) {
-	var result = "<div>";
+	var result = "<div class='position-entry'>";
 	
-	result += "<div>";
+	result += "<div class='position-name'>";
 	result += position["title"];
 	result += " @ ";
 	result += position["company"]["name"];
 	result += "</div>";
 
-	result += "<div>";
+	result += "<div class='position-date'>";
 	result += getDate(position["start-date"]);
 	result += " - ";
 	if (position["is-current"] == "true") {
@@ -151,7 +151,7 @@ function createPosition(position) {
 	}
 	result += "</div>";
 	
-	result += "<div>";
+	result += "<div class='position-summary'>";
 	result += position["summary"];
 	result += "</div>";
 	
@@ -179,26 +179,25 @@ function compileEducation(education) {
 }
 
 function createEducation(education) {
-	var result = "<div>";
+	var result = "<div class='school-entry'>";
 
-	result += "<div>";
+	result += "<div class='school-name'>";
 	result += education["school-name"];
 	result += "</div>";
 	
-	result += "<div>";
+	result += "<div class='school-degree'>";
 	result += education["degree"];
 	result += " in ";
 	result += education["field-of-study"];
 	result += "</div>";
 	
-	result += "<div>";
+	result += "<div class='school-date'>";
 	result += getDate(education["start-date"]);
 	result += " - ";
 	result += getDate(education["end-date"]);
 	result += "</div>";
 		
-	result += "<div>";
-	result += "Activities: ";
+	result += "<div class='school-activities'>";
 	result += education["activities"];
 	result += "</div>";
 	

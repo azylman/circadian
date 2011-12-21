@@ -1,3 +1,7 @@
+body {
+	color: #222 !important;
+}
+
 .container-fluid {
 	margin-top: 10px;
 	position: absolute;
@@ -12,16 +16,21 @@
 	margin-left: 63% !important;
 }
 
+.linkedin h3 {
+	font-size: 12px;
+	border-bottom: 1px dotted;
+	margin-top: 15px;
+	margin-bottom: 10px;
+	text-transform: uppercase;
+	font-weight: normal;
+}
+
 #profile-picture {
 	float: left;
 }
 
 #industry:after {
 	content: " | ";
-}
-
-#profile-header {
-	height: 100px;
 }
 
 #profile-header-text {
@@ -38,4 +47,66 @@
 
 #profile-picture {
 	padding-top: 10px;
+}
+
+#specialties {
+	margin-top: 10px;
+}
+#specialties:before {
+	content: "Specialties: ";
+	font-style: italic;
+}
+
+#skills {
+	margin-top: 10px;
+}
+#skills:before {
+	content: "Skills: ";
+	font-style: italic;
+}
+
+.position-entry {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.position-name {
+	font-size: 22px;
+	line-height: 26px;
+}
+
+.position-date {
+	font-size: 11px;
+	color: #666;
+}
+
+.position-summary {
+	
+}
+
+.school-entry {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.school-name {
+	font-size: 22px;
+	line-height: 26px;
+}
+
+.school-degree {
+	
+}
+
+.school-date {
+	font-size: 11px;
+}
+
+.school-activites {
+	
+}
+
+.school-activities:before {
+	content: "Activities: ";
+	font-style: italic;
 }
