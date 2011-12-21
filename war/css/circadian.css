@@ -5,3 +5,32 @@
 .linkedin {
 	margin-left: 63% !important;
 }
+
+#profile-picture {
+	float: left;
+}
+
+#industry:after {
+	content: " | ";
+}
+
+#profile-header {
+	height: 100px;
+	padding-top: 10px;
+}
+
+#profile-header-text {
+	font-size: 18px;
+	line-height: 22px;
+	margin-left: 90px;
+	padding-top: 10px;
+}
+
+#name {
+	font-size: 30px;
+	line-height: 36px;
+}
+
+#profile-picture {
+	padding-top: 10px;
+}

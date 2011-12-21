@@ -35,13 +35,17 @@ function updateProfile(me) {
 function updateIfDifferent(location, content) {
 	if (location.html() != content) {
 		updateContent(location, content);
+	} else {
+		hideIfEmpty(location);
 	}
 }
 
 function updateContent(location, content) {
 	location.fadeOut('fast', function() {
 		location.html(content);
-		location.fadeIn('fast', function() {});
+		location.fadeIn('fast', function() {
+			hideIfEmpty(location);
+		});
 	});
 }
 
@@ -51,6 +55,14 @@ function updateImageIfDifferent(image, location) {
 			image.attr('src', location);
 			image.fadeIn('fast', function() {});
 		});
+	}
+}
+
+function hideIfEmpty(location) {
+	console.log("Location text: " + location.html());
+	if (location.html() == "") {
+		console.log("Hiding it.");
+		location.parent().hide();
 	}
 }
 
