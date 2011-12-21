@@ -19,29 +19,30 @@ import net.sf.jsr107cache.CacheFactory;
 import net.sf.jsr107cache.CacheManager;
 
 public class LinkedInCache {
-	private static Cache cache;
+	private static Cache cache = null;
 	private static final String PROFILE_URL = "http://api.linkedin.com/v1/people/~:("
 			+ "first-name,last-name,headline,location:(name),industry,summary,specialties,honors,interests,"
 			+ "positions,publications,patents,languages,skills,certifications,educations,picture-url,public-profile-url"
 			+ ")";
 	
-	LinkedInCache() throws CacheException {
-		CacheFactory cacheFactory = CacheManager.getInstance().getCacheFactory();
-        cache = cacheFactory.createCache(Collections.emptyMap());
+	public static void instantiateCache() throws CacheException {
+		if (cache == null) {
+			CacheFactory cacheFactory = CacheManager.getInstance().getCacheFactory();
+	        cache = cacheFactory.createCache(Collections.emptyMap());
+		}
 	}
 	
-	String get(String user) {
+	public static String get(String user) {
 		return (String) cache.get(user);
 	}
 	
-	String refresh(String user) {
+	public static String refresh(String user) {
 		String result = getFreshData(user);
 		cache.put("linkedin", result);
 		return result;
 	}
 	
-	private String getFreshData(String user) {
-		System.out.println("Getting fresh data");
+	private static String getFreshData(String user) {
 		OAuthService service = new ServiceBuilder()
 	        .provider(LinkedInApi.class)
 	        .apiKey(HiddenData.getApiKey())

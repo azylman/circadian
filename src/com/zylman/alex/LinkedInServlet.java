@@ -3,22 +3,27 @@ package com.zylman.alex;
 import net.sf.jsr107cache.CacheException;
 
 import org.restlet.resource.Get;
+import org.restlet.resource.Put;
 
 public class LinkedInServlet extends ServerResource {
 	@Get public String retrieve() {
 		String result;
 
 	    try {
-            LinkedInCache cache = new LinkedInCache();
+            LinkedInCache.instantiateCache();
             
-            result = cache.get("linkedin");
+            result = LinkedInCache.get("linkedin");
             if (result == null) {
-            	result = cache.refresh("linkedin");
+            	result = LinkedInCache.refresh("linkedin");
             }
         } catch (CacheException e) {
             result = "CacheException: " + e.getMessage();
         }
 	    
 	    return result;
+	}
+	
+	@Put public String update() {
+		return LinkedInCache.refresh("linkedin");
 	}
 }
