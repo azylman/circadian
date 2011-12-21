@@ -10,6 +10,7 @@ public class MeApplication extends Application {
 
         router.attach("/me", MeServlet.class);
         router.attach("/linkedin", LinkedInServlet.class);
+        router.attach("/twitter", TwitterServlet.class);
 
         return router;
     }
