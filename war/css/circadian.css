@@ -1,5 +1,11 @@
+.container-fluid {
+	margin-top: 10px;
+	position: absolute;
+}
+
 .feed {
 	width: 60% !important;
+	padding-top: 10px;
 }
 
 .linkedin {
@@ -16,7 +22,6 @@
 
 #profile-header {
 	height: 100px;
-	padding-top: 10px;
 }
 
 #profile-header-text {
