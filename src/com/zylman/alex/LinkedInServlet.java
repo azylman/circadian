@@ -15,7 +15,7 @@ import org.scribe.oauth.OAuthService;
 public class LinkedInServlet extends ServerResource {
 	private static final String PROTECTED_RESOURCE_URL = "http://api.linkedin.com/v1/people/~/connections:(id,last-name)";
 	private static final String PROFILE_URL = "http://api.linkedin.com/v1/people/~:("
-			+ "id,first-name,last-name,headline,location:(name),industry,summary,specialties,honors,interests,"
+			+ "first-name,last-name,headline,location:(name),industry,summary,specialties,honors,interests,"
 			+ "positions,publications,patents,languages,skills,certifications,educations,picture-url,public-profile-url"
 			+ ")";
 	
