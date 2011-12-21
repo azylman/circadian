@@ -1,7 +1,5 @@
 package com.zylman.alex;
 
-import java.util.Scanner;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
@@ -12,11 +10,9 @@ import org.scribe.model.OAuthRequest;
 import org.scribe.model.Response;
 import org.scribe.model.Token;
 import org.scribe.model.Verb;
-import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
 
 public class LinkedInServlet extends ServerResource {
-	private static final String PROTECTED_RESOURCE_URL = "http://api.linkedin.com/v1/people/~/connections:(id,last-name)";
 	private static final String PROFILE_URL = "http://api.linkedin.com/v1/people/~:("
 			+ "first-name,last-name,headline,location:(name),industry,summary,specialties,honors,interests,"
 			+ "positions,publications,patents,languages,skills,certifications,educations,picture-url,public-profile-url"
