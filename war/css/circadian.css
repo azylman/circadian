@@ -12,6 +12,16 @@ body {
 	padding-top: 10px;
 }
 
+.feed .heading {
+	font-size: 30px;
+	line-height: 36px;
+}
+
+#feed {
+	border-top: 1px dotted;
+	margin-top: 5px;
+}
+
 .linkedin {
 	margin-left: 63% !important;
 }
@@ -109,4 +119,25 @@ body {
 .school-activities:before {
 	content: "Activities: ";
 	font-style: italic;
+}
+
+.feed-entry {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.feed-entry-content {
+	font-size: 18px;
+}
+
+.feed-entry-time {
+	
+}
+.feed-entry-time:after {
+	content: " via ";
+	color: #666;
+}
+
+.feed-entry-source {
+	
 }

@@ -29,26 +29,45 @@ $(document).ready(function() {
 	});
 });
 
+function replaceURLWithHTMLLinks(text) {
+    var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    return text.replace(exp,"<a href='$1'>$1</a>"); 
+}
+
 function updateFeed(feed) {
 	var result = "";
 	for (entry in feed) {
 		result += addFeedEntry(feed[entry]);
 	}
+	
 	$("#feed").html(result);
+	
+	twttr.anywhere(function (T) {
+		T.hovercards();
+	});
+	
+	twttr.anywhere(function (T) {
+		T.linkifyUsers();
+	});
 }
 
 function addFeedEntry(entry) {
 	var source = new Array();
 	source["0"] = "Twitter";
 	
-	var result = "<div>";
-	result += entry["content"];
-	result += "<br />";
-	result += entry["time"];
-	result += " via ";
-	result += source[entry["source"]];
-	result += "</div>";
+	var result = "<div class='feed-entry'>";
 	
+	result += "<div class='feed-entry-content'>";
+	result += replaceURLWithHTMLLinks(entry["content"]);
+	result += "</div>";
+	result += "<span class='feed-entry-time'>";
+	result += entry["time"];
+	result += "</span>";
+	result += "<span class='feed-entry-source'>";
+	result += source[entry["source"]];
+	result += "</span>";
+	
+	result += "</div>";
 	return result;
 }
 
