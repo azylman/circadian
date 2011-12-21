@@ -9,6 +9,7 @@ public class MeApplication extends Application {
         Router router = new Router(getContext());
 
         router.attach("/me", MeServlet.class);
+        router.attach("/linkedin", LinkedInServlet.class);
 
         return router;
     }
