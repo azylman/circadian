@@ -2,6 +2,9 @@ package com.zylman.alex;
 
 import java.util.Scanner;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.XML;
 import org.restlet.resource.Get;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.LinkedInApi;
@@ -52,7 +55,15 @@ public class LinkedInServlet extends ServerResource {
 	    service.signRequest(accessToken, request);
 	    Response response = request.send();
 	    
-	    result.append(response.getBody());
+	    try {
+            JSONObject xmlJSONObj = XML.toJSONObject(response.getBody());
+            String jsonPrettyPrintString = xmlJSONObj.toString(4);
+            result.append(jsonPrettyPrintString);
+        } catch (JSONException je) {
+            System.out.println(je.toString());
+        }
+	    
+	    //result.append(response.getBody());
 	    return result.toString();
 	}
 }
