@@ -2,3 +2,4 @@
 war/WEB-INF/classes/
 war/WEB-INF/lib/META-INF/
 war/WEB-INF/classes/com/zylman/alex/MeServlet.class
+src/com/zylman/alex/HiddenData.java
