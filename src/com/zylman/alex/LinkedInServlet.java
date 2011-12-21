@@ -14,6 +14,10 @@ import org.scribe.oauth.OAuthService;
 
 public class LinkedInServlet extends ServerResource {
 	private static final String PROTECTED_RESOURCE_URL = "http://api.linkedin.com/v1/people/~/connections:(id,last-name)";
+	private static final String PROFILE_URL = "http://api.linkedin.com/v1/people/~:("
+			+ "id,first-name,last-name,headline,location:(name),industry,summary,specialties,honors,interests,"
+			+ "positions,publications,patents,languages,skills,certifications,educations,picture-url,public-profile-url"
+			+ ")";
 	
 	@Get public String retrieve() {
 	    OAuthService service = new ServiceBuilder()
@@ -22,9 +26,6 @@ public class LinkedInServlet extends ServerResource {
 	                                .apiSecret(HiddenData.getApiSecret())
 	                                .build();   
 	    StringBuilder result = new StringBuilder();
-	    
-	    result.append("=== LinkedIn's OAuth Workflow ===");
-	    result.append("<br />");
 
 	    /*
 	    // Obtain the Request Token
@@ -46,21 +47,12 @@ public class LinkedInServlet extends ServerResource {
 	    Token accessToken = service.getAccessToken(requestToken, verifier);
 	    */
 	    Token accessToken = HiddenData.getToken();
-	    result.append("Got the Access Token!");
-	    result.append("(if your curious it looks like this: " + accessToken + " )");
-	    result.append("<br />");
-	
-	    // Now let's go and ask for a protected resource!
-	    result.append("Now we're going to access a protected resource...");
-	    OAuthRequest request = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL);
+	    
+	    OAuthRequest request = new OAuthRequest(Verb.GET, PROFILE_URL);
 	    service.signRequest(accessToken, request);
 	    Response response = request.send();
-	    result.append("Got it! Lets see what we found...");
-	    result.append("<br />");
+	    
 	    result.append(response.getBody());
-	
-	    result.append("<br />");
-	    result.append("Thats it man! Go and build something awesome with Scribe! :)");
 	    return result.toString();
 	}
 }
