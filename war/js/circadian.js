@@ -21,13 +21,13 @@ function updateProfile(me) {
 	updateIfDifferent($("#specialties"), me["specialties"]);
 	updateIfDifferent($("#honors"), me["honors"]);
 	updateIfDifferent($("#interests"), me["interests"]);
-	//updateIfDifferent($("#positions"), me["positions"]);
+	updateIfDifferent($("#positions"), compilePositions(me["positions"]["position"]));
 	updateIfDifferent($("#publications"), me["publications"]);
 	updateIfDifferent($("#patents"), me["patents"]);
 	updateIfDifferent($("#languages"), me["languages"]);
 	updateIfDifferent($("#skills"), compileSkills(me["skills"]["skill"]));
 	updateIfDifferent($("#certifications"), me["certifications"]);
-	//updateIfDifferent($("#educations"), me["educations"]);
+	updateIfDifferent($("#educations"), compileEducation(me["educations"]["education"]));
 	updateImageIfDifferent($("#profile-picture"), me["picture-url"]);
 	$("#profile-link").attr('href', me["public-profile-url"]);
 }
@@ -59,10 +59,10 @@ function updateImageIfDifferent(image, location) {
 }
 
 function hideIfEmpty(location) {
-	console.log("Location text: " + location.html());
 	if (location.html() == "") {
-		console.log("Hiding it.");
 		location.parent().hide();
+	} else {
+		location.parent().show();
 	}
 }
 
@@ -72,4 +72,66 @@ function compileSkills(skills) {
 		result += skills[skill]["skill"]["name"] + ", ";
 	}
 	return result.substring(0, result.length - 2);
+}
+
+function compilePositions(positions) {
+	var result = "";
+	for (position in positions) {
+		result += createPosition(positions[position]);
+	}
+	return result;
+}
+
+function createPosition(position) {
+	var result = "<div>";
+	result += getDate(position["start-date"]);
+	result += " - ";
+	if (position["is-current"] == true) {
+		result += "present";
+	} else {
+		result += getDate(position["end-date"]);
+	}
+	result += "<br />";
+	result += position["title"];
+	result += " @ ";
+	result += position["company"]["name"];
+	result += "<br />";
+	result += position["summary"];
+	result += "</div>";
+	return result;
+}
+
+function getDate(date) {
+	var result = "";
+	if (date["month"] != null) {
+		result += date["month"] += "-";
+	}
+	if (date["day"] != null) {
+		result += date["day"] += "-";
+	}
+	if (date["year"] != null) {
+		result += date["year"];
+	}
+	return result;
+}
+
+function compileEducation(education) {
+	return createEducation(education);
+}
+
+function createEducation(education) {
+	var result = "<div>";
+	result += getDate(education["start-date"]);
+	result += " - ";
+	result += getDate(education["end-date"]);
+	result += "<br />";
+	result += education["school-name"];
+	result += "<br />";
+	result += education["degree"];
+	result += " in ";
+	result += education["field-of-study"];
+	result += "<br />";
+	result += "Activities: ";
+	result += education["activities"];
+	return result;
 }
