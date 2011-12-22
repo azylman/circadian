@@ -9,6 +9,8 @@ body {
 	background-image: -ms-linear-gradient(bottom, rgb(22,106,186) 0%, rgb(102,215,249) 100%);
 	
 	overflow: hidden;
+	font-size: 15px;
+	line-height: 20px;
 }
 
 .container-fluid {
@@ -25,7 +27,7 @@ body {
 }
 
 .feed {
-	width: 60% !important;
+	width: 58% !important;
 	padding-top: 10px;
 	
 	overflow-y: visible;
@@ -131,6 +133,7 @@ body {
 
 .school-date {
 	font-size: 11px;
+	color: #666;
 }
 
 .school-activites {
@@ -143,12 +146,12 @@ body {
 }
 
 .feed-entry {
-	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
 
 .feed-entry-content {
-	font-size: 18px;
+	
 }
 
 .feed-entry-time {
@@ -156,9 +159,13 @@ body {
 }
 .feed-entry-time:after {
 	content: " via ";
-	color: #666;
 }
 
 .feed-entry-source {
 	
+}
+
+.feed-entry-metadata {
+	color: #666;
+	font-size: 11px;
 }

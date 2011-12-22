@@ -60,11 +60,17 @@ function addFeedEntry(entry) {
 	result += "<div class='feed-entry-content'>";
 	result += replaceURLWithHTMLLinks(entry["content"]["value"]);
 	result += "</div>";
+	
+	result += "<span class='feed-entry-metadata'>";
+	
 	result += "<span class='feed-entry-time'>";
 	result += entry["time"];
 	result += "</span>";
+	
 	result += "<span class='feed-entry-source'>";
 	result += source[entry["source"]];
+	result += "</span>";
+	
 	result += "</span>";
 	
 	result += "</div>";
