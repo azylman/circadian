@@ -16,4 +16,8 @@ public class Feed {
 		Gson gson = new Gson();
 		return gson.toJson(entries);
 	}
+	
+	public boolean isEmpty() {
+		return entries.isEmpty();
+	}
 }
