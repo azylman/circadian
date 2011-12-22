@@ -16,7 +16,6 @@ public class LinkedInResource extends ServerResource {
             result = "CacheException: " + e.getMessage();
         }
 	    
-	    System.out.println("Outputting profile...");
 	    return result;
 	}
 }

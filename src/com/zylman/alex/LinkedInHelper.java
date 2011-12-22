@@ -58,13 +58,9 @@ public class LinkedInHelper {
 		String result = getFreshData(user);
 		cache.put("linkedin", result);
 		
-		System.out.print("Getting persistence manager... ");
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-		System.out.println("Done!");
 		try {
-			System.out.print("Persisting profile... ");
 			pm.makePersistent(new LinkedInProfile(user, result));
-			System.out.println("Done!");
 		} finally {
 			pm.close();
 		}
