@@ -55,7 +55,6 @@ public class TwitterHelper {
 			boolean run = true;
 			int page = 1;
 			while (run) {
-				System.out.println("Getting twitter page " + page);
 				List<Status> tweets = twitter.getUserTimeline(user, new Paging(page, 20));
 				
 				boolean createdObjects = false;
@@ -67,8 +66,6 @@ public class TwitterHelper {
 						FeedEntry e = pm.getObjectById(FeedEntry.class, newEntry.tweetId);
 					} catch (JDOObjectNotFoundException e) {
 						pm.makePersistent(newEntry);
-						
-						System.out.println("Creating a feed entry");
 						createdObjects = true;
 					}
 				}
@@ -79,7 +76,6 @@ public class TwitterHelper {
 					run = false;
 				}
 			}
-			System.out.println("Done fetching tweets");
 			
 			String result = get(user, 1, 20).toString();
 			

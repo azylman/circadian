@@ -111,7 +111,7 @@ public class LinkedInHelper {
 			String jsonPrettyPrintString = xmlJSONObj.toString(4);
 			result.append(jsonPrettyPrintString);
 		} catch (JSONException je) {
-			System.out.println(je.toString());
+			return "JSONException: " + je.getMessage();
 		}
 		
 		return result.toString();
