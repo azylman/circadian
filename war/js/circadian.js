@@ -58,7 +58,7 @@ function addFeedEntry(entry) {
 	var result = "<div class='feed-entry'>";
 	
 	result += "<div class='feed-entry-content'>";
-	result += replaceURLWithHTMLLinks(entry["content"]);
+	result += replaceURLWithHTMLLinks(entry["content"]["value"]);
 	result += "</div>";
 	result += "<span class='feed-entry-time'>";
 	result += entry["time"];
