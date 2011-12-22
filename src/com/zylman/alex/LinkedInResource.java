@@ -12,9 +12,6 @@ public class LinkedInResource extends ServerResource {
             LinkedInHelper.instantiateCache();
             
             result = LinkedInHelper.get("linkedin");
-            if (result == null) {
-            	result = LinkedInHelper.refresh("linkedin");
-            }
         } catch (CacheException e) {
             result = "CacheException: " + e.getMessage();
         }

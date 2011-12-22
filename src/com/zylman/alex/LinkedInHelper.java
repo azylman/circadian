@@ -33,7 +33,11 @@ public class LinkedInHelper {
 	}
 	
 	public static String get(String user) {
-		return (String) cache.get(user);
+		String cached = (String) cache.get(user);
+		
+		if (cached != null) return cached;
+		
+		return refresh(user); 
 	}
 	
 	public static String refresh(String user) {
