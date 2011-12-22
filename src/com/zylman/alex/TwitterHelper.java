@@ -94,7 +94,7 @@ public class TwitterHelper {
 		q.setClass(FeedEntry.class);
 		q.setFilter("user == " + user);
 		q.setOrdering("time descending");
-		q.setRange(page * count, (page + 1) * count);
+		q.setRange((page - 1) * count, page * count);
 		
 		@SuppressWarnings("unchecked")
 		Collection<FeedEntry> entries = (Collection<FeedEntry>) q.execute();
