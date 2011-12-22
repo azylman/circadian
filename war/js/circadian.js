@@ -5,7 +5,7 @@ $(document).ready(function() {
 		type: "get",
 		dataType: "json",
 		success: function(data) {
-			updateProfile(data.person);
+			updateProfile(data.person, false);
 			
 			// Refresh the cache for freshness.
 			$.ajax({
@@ -13,7 +13,7 @@ $(document).ready(function() {
 				type: "get",
 				dataType: "json",
 				success: function(data) {
-					updateProfile(data.person);
+					updateProfile(data.person, true);
 				}
 			});
 		}
@@ -91,27 +91,27 @@ function addFeedEntry(entry) {
 // specialties, honors, interests, positions, publications, patents
 // languages, skills, certifications, educations, picture-url, public-profile-url
 
-function updateProfile(me) {
-	updateIfDifferent($("#name"), me["first-name"] + " " + me["last-name"]);
-	updateIfDifferent($("#headline"), me["headline"]);
-	updateIfDifferent($("#location"), me["location"]["name"]);
-	updateIfDifferent($("#industry"), me["industry"]);
-	updateIfDifferent($("#summary"), me["summary"]);
-	updateIfDifferent($("#specialties"), me["specialties"]);
-	updateIfDifferent($("#honors"), me["honors"]);
-	updateIfDifferent($("#interests"), me["interests"]);
-	updateIfDifferent($("#positions"), compilePositions(me["positions"]["position"]));
-	updateIfDifferent($("#publications"), me["publications"]);
-	updateIfDifferent($("#patents"), me["patents"]);
-	updateIfDifferent($("#languages"), me["languages"]);
-	updateIfDifferent($("#skills"), compileSkills(me["skills"]["skill"]));
-	updateIfDifferent($("#certifications"), me["certifications"]);
-	updateIfDifferent($("#educations"), compileEducation(me["educations"]["education"]));
-	updateImageIfDifferent($("#profile-picture"), me["picture-url"]);
+function updateProfile(me, fadeUpdate) {
+	updateIfDifferent($("#name"), me["first-name"] + " " + me["last-name"], fadeUpdate);
+	updateIfDifferent($("#headline"), me["headline"], fadeUpdate);
+	updateIfDifferent($("#location"), me["location"]["name"], fadeUpdate);
+	updateIfDifferent($("#industry"), me["industry"], fadeUpdate);
+	updateIfDifferent($("#summary"), me["summary"], fadeUpdate);
+	updateIfDifferent($("#specialties"), me["specialties"], fadeUpdate);
+	updateIfDifferent($("#honors"), me["honors"], fadeUpdate);
+	updateIfDifferent($("#interests"), me["interests"], fadeUpdate);
+	updateIfDifferent($("#positions"), compilePositions(me["positions"]["position"]), fadeUpdate);
+	updateIfDifferent($("#publications"), me["publications"], fadeUpdate);
+	updateIfDifferent($("#patents"), me["patents"], fadeUpdate);
+	updateIfDifferent($("#languages"), me["languages"], fadeUpdate);
+	updateIfDifferent($("#skills"), compileSkills(me["skills"]["skill"]), fadeUpdate);
+	updateIfDifferent($("#certifications"), me["certifications"], fadeUpdate);
+	updateIfDifferent($("#educations"), compileEducation(me["educations"]["education"]), fadeUpdate);
+	updateImageIfDifferent($("#profile-picture"), me["picture-url"], fadeUpdate);
 	$("#profile-link").attr('href', me["public-profile-url"]);
 }
 
-function updateIfDifferent(location, content) {
+function updateIfDifferent(location, content, fadeUpdate) {
 	// Compensate for any issues with browser encoding etc. by creating an actual element
 	// e.g. AT&T becomes AT&amp;T
 	// If we didn't do this those would not compare properly and it would falsely update
@@ -119,27 +119,36 @@ function updateIfDifferent(location, content) {
 	element.html(content);
 	
 	if (location.html() != element.html()) {
-		updateContent(location, content);
+		updateContent(location, content, fadeUpdate);
 	} else {
 		hideIfEmpty(location);
 	}
 }
 
-function updateContent(location, content) {
-	location.fadeOut('fast', function() {
-		location.html(content);
-		location.fadeIn('fast', function() {
-			hideIfEmpty(location);
+function updateContent(location, content, fadeUpdate) {
+	if (fadeUpdate) {
+		location.fadeOut('fast', function() {
+			location.html(content);
+			location.fadeIn('fast', function() {
+				hideIfEmpty(location);
+			});
 		});
-	});
+	} else {
+		location.html(content);
+		hideIfEmpty(location);
+	}
 }
 
-function updateImageIfDifferent(image, location) {
-	if (image.attr('src') != location) {	
-		image.fadeOut('fast', function() {
+function updateImageIfDifferent(image, location, fadeUpdate) {
+	if (image.attr('src') != location) {
+		if (fadeUpdate) {
+			image.fadeOut('fast', function() {
+				image.attr('src', location);
+				image.fadeIn('fast', function() {});
+			});
+		} else {
 			image.attr('src', location);
-			image.fadeIn('fast', function() {});
-		});
+		}
 	}
 }
 
