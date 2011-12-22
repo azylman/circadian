@@ -9,8 +9,8 @@ $(document).ready(function() {
 			
 			// Refresh the cache for freshness.
 			$.ajax({
-				url: "/linkedin",
-				type: "put",
+				url: "/linkedin/recache",
+				type: "get",
 				dataType: "json",
 				success: function(data) {
 					updateProfile(data.person);

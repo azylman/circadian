@@ -3,7 +3,6 @@ package com.zylman.alex;
 import net.sf.jsr107cache.CacheException;
 
 import org.restlet.resource.Get;
-import org.restlet.resource.Put;
 
 public class LinkedInResource extends ServerResource {
 	@Get public String retrieve() {
@@ -21,9 +20,5 @@ public class LinkedInResource extends ServerResource {
         }
 	    
 	    return result;
-	}
-	
-	@Put public String update() {
-		return LinkedInHelper.refresh("linkedin");
 	}
 }

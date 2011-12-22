@@ -9,6 +9,7 @@ public class MeApplication extends Application {
         Router router = new Router(getContext());
 
         router.attach("/linkedin", LinkedInResource.class);
+        router.attach("/linkedin/recache", LinkedInRecacheResource.class);
         router.attach("/twitter", TwitterResource.class);
 
         return router;
