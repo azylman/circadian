@@ -18,7 +18,7 @@ import net.sf.jsr107cache.CacheException;
 import net.sf.jsr107cache.CacheFactory;
 import net.sf.jsr107cache.CacheManager;
 
-public class LinkedInCache {
+public class LinkedInHelper {
 	private static Cache cache = null;
 	private static final String PROFILE_URL = "http://api.linkedin.com/v1/people/~:("
 			+ "first-name,last-name,headline,location:(name),industry,summary,specialties,honors,interests,"

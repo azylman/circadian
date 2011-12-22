@@ -10,11 +10,11 @@ public class LinkedInResource extends ServerResource {
 		String result;
 
 	    try {
-            LinkedInCache.instantiateCache();
+            LinkedInHelper.instantiateCache();
             
-            result = LinkedInCache.get("linkedin");
+            result = LinkedInHelper.get("linkedin");
             if (result == null) {
-            	result = LinkedInCache.refresh("linkedin");
+            	result = LinkedInHelper.refresh("linkedin");
             }
         } catch (CacheException e) {
             result = "CacheException: " + e.getMessage();
@@ -24,6 +24,6 @@ public class LinkedInResource extends ServerResource {
 	}
 	
 	@Put public String update() {
-		return LinkedInCache.refresh("linkedin");
+		return LinkedInHelper.refresh("linkedin");
 	}
 }
