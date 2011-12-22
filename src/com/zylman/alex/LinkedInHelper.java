@@ -51,6 +51,7 @@ public class LinkedInHelper {
 			pm.close();
 		}
 		
+		cache.put(user, profile.getProfile());
 		return profile;
 	}
 	
