@@ -6,16 +6,11 @@ import org.restlet.resource.Get;
 
 public class LinkedInResource extends ServerResource {
 	@Get public String retrieve() {
-		String result;
-
 	    try {
             LinkedInHelper.instantiateCache();
-            
-            result = LinkedInHelper.get("linkedin").getProfile();
+            return LinkedInHelper.get("linkedin").getProfile();
         } catch (CacheException e) {
-            result = "CacheException: " + e.getMessage();
+            return "CacheException: " + e.getMessage();
         }
-	    
-	    return result;
 	}
 }
