@@ -11,6 +11,7 @@ public class MeApplication extends Application {
         router.attach("/linkedin", LinkedInResource.class);
         router.attach("/linkedin/recache", LinkedInRecacheResource.class);
         router.attach("/twitter", TwitterResource.class);
+        router.attach("/twitter/recache", TwitterRecacheResource.class);
 
         return router;
     }

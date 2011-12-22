@@ -25,6 +25,16 @@ $(document).ready(function() {
 		dataType: "json",
 		success: function(data) {
 			updateFeed(data);
+			
+			// Refresh the cache for freshness.
+			$.ajax({
+				url: "/twitter/recache",
+				type: "get",
+				dataType: "json",
+				success: function(data) {
+					updateFeed(data);
+				}
+			});
 		}
 	});
 });
