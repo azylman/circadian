@@ -1,4 +1,4 @@
-body {
+body, html {
 	color: #222 !important;
 	
 	background: rgb(67,224,224);
@@ -45,7 +45,7 @@ body {
 
 .linkedin {
 	margin-left: 63% !important;
-	
+	margin-bottom: 15px;
 	overflow-y: visible;
 }
 
