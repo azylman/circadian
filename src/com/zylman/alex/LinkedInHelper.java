@@ -2,6 +2,9 @@ package com.zylman.alex;
 
 import java.util.Collections;
 
+import javax.jdo.JDOObjectNotFoundException;
+import javax.jdo.PersistenceManager;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
@@ -32,18 +35,41 @@ public class LinkedInHelper {
 		}
 	}
 	
-	public static String get(String user) {
-		String cached = (String) cache.get(user);
+	public static LinkedInProfile get(String user) {
+		String profileData = (String) cache.get(user);
 		
-		if (cached != null) return cached;
+		if (profileData != null) return new LinkedInProfile(user, profileData);
 		
-		return refresh(user); 
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		LinkedInProfile profile;
+		try {
+			LinkedInProfile storedProfile = pm.getObjectById(LinkedInProfile.class, user);
+			profile = storedProfile;
+		} catch (JDOObjectNotFoundException e) {
+			profile = refresh(user);
+		} finally {
+			pm.close();
+		}
+		
+		return profile;
 	}
 	
-	public static String refresh(String user) {
+	public static LinkedInProfile refresh(String user) {
 		String result = getFreshData(user);
 		cache.put("linkedin", result);
-		return result;
+		
+		System.out.print("Getting persistence manager... ");
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		System.out.println("Done!");
+		try {
+			System.out.print("Persisting profile... ");
+			pm.makePersistent(new LinkedInProfile(user, result));
+			System.out.println("Done!");
+		} finally {
+			pm.close();
+		}
+		
+		return new LinkedInProfile(user, result);
 	}
 	
 	private static String getFreshData(String user) {

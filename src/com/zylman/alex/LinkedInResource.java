@@ -11,11 +11,12 @@ public class LinkedInResource extends ServerResource {
 	    try {
             LinkedInHelper.instantiateCache();
             
-            result = LinkedInHelper.get("linkedin");
+            result = LinkedInHelper.get("linkedin").getProfile();
         } catch (CacheException e) {
             result = "CacheException: " + e.getMessage();
         }
 	    
+	    System.out.println("Outputting profile...");
 	    return result;
 	}
 }
