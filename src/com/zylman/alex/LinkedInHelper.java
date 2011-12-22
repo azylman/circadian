@@ -35,7 +35,9 @@ public class LinkedInHelper {
 		}
 	}
 	
-	public static LinkedInProfile get(String user) {
+	public static LinkedInProfile get(String user) throws CacheException {
+		instantiateCache();
+			
 		String profileData = (String) cache.get(user);
 		
 		if (profileData != null) return new LinkedInProfile(user, profileData);
@@ -55,7 +57,9 @@ public class LinkedInHelper {
 		return profile;
 	}
 	
-	public static LinkedInProfile refresh(String user) {
+	public static LinkedInProfile refresh(String user) throws CacheException {
+		instantiateCache();
+		
 		String result = getFreshData(user);
 		cache.put("linkedin", result);
 		

@@ -22,7 +22,7 @@ public class TwitterHelper {
 	private static Cache cache = null;
 	private static final int MAX_PAGES = Integer.MAX_VALUE;
 	
-	public static void instantiateCache() throws CacheException {
+	private static void instantiateCache() throws CacheException {
 		if (cache == null) {
 			CacheFactory cacheFactory = CacheManager.getInstance().getCacheFactory();
 	        cache = cacheFactory.createCache(Collections.emptyMap());
@@ -30,6 +30,11 @@ public class TwitterHelper {
 	}
 	
 	public static String get(String user) {
+		try {
+			instantiateCache();
+		} catch (CacheException e) {
+			return "CacheException: " + e.getMessage();
+		}
 		String feedData = (String) cache.get(user);
 		
 		if (feedData != null) return feedData;
@@ -78,10 +83,14 @@ public class TwitterHelper {
 			
 			String result = get(user, 1, 20).toString();
 			
+			instantiateCache();
+			
 			cache.put(user, result);
 			return result;
 		} catch (TwitterException e) {
 			return "TwitterException: " + e.getMessage();
+		} catch (CacheException e) {
+			return "CacheException: " + e.getMessage();
 		}
 	}
 	
