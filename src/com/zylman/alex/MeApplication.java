@@ -8,8 +8,8 @@ public class MeApplication extends Application {
 	@Override public Restlet createInboundRoot() {
         Router router = new Router(getContext());
 
-        router.attach("/linkedin", LinkedInServlet.class);
-        router.attach("/twitter", TwitterServlet.class);
+        router.attach("/linkedin", LinkedInResource.class);
+        router.attach("/twitter", TwitterResource.class);
 
         return router;
     }

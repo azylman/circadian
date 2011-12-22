@@ -9,7 +9,7 @@ import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 
-public class TwitterServlet extends ServerResource {
+public class TwitterResource extends ServerResource {
 	@Get public String retrieve() {
 		Twitter twitter = HiddenData.getTwitter();
 		try {

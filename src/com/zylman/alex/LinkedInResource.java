@@ -5,7 +5,7 @@ import net.sf.jsr107cache.CacheException;
 import org.restlet.resource.Get;
 import org.restlet.resource.Put;
 
-public class LinkedInServlet extends ServerResource {
+public class LinkedInResource extends ServerResource {
 	@Get public String retrieve() {
 		String result;
 
