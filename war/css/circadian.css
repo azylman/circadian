@@ -9,16 +9,14 @@ body, html {
 	background-image: -ms-linear-gradient(bottom, rgb(22,106,186) 0%, rgb(102,215,249) 100%);
 	
 	overflow: hidden;
-	font-size: 15px;
-	line-height: 20px;
+	font-size: 15px !important;
+	line-height: 20px !important;
 }
 
-.container-fluid {
-	position: absolute;
-	
+.container {
 	height: 100%;
-	margin-left: 30px;
-	margin-right: 30px;
+	
+	padding: 20px;
 	
 	background-color: rgba(255, 255, 255, .6);
 	box-shadow: 0px 0px 15px #000;
@@ -26,36 +24,20 @@ body, html {
 	overflow-y: scroll;
 }
 
-.feed {
-	width: 58% !important;
-	padding-top: 10px;
-	
-	overflow-y: visible;
+h1 {
+	padding-bottom: 5px !important;
+	border-bottom: 1px dotted !important;
+	font-weight: normal !important;
 }
 
-.feed .heading {
-	font-size: 30px;
-	line-height: 36px;
-}
-
-#feed {
-	border-top: 1px dotted;
-	margin-top: 5px;
-}
-
-.linkedin {
-	margin-left: 63% !important;
-	margin-bottom: 15px;
-	overflow-y: visible;
-}
-
-.linkedin h3 {
+#profile h1 {
+	padding-bottom: 10px !important;
 	font-size: 12px;
+	line-height: 10px;
 	border-bottom: 1px dotted;
-	margin-top: 15px;
-	margin-bottom: 10px;
+	margin-top: 20px;
+	margin-bottom: 5px;
 	text-transform: uppercase;
-	font-weight: normal;
 }
 
 #profile-picture {
@@ -70,16 +52,11 @@ body, html {
 	font-size: 18px;
 	line-height: 22px;
 	margin-left: 90px;
-	padding-top: 10px;
 }
 
 #name {
 	font-size: 30px;
 	line-height: 36px;
-}
-
-#profile-picture {
-	padding-top: 10px;
 }
 
 #specialties {
@@ -99,7 +76,6 @@ body, html {
 }
 
 .position-entry {
-	margin-top: 10px;
 	margin-bottom: 10px;
 }
 
@@ -118,13 +94,13 @@ body, html {
 }
 
 .school-entry {
-	margin-top: 10px;
 	margin-bottom: 10px;
 }
 
 .school-name {
 	font-size: 22px;
 	line-height: 26px;
+	margin-top: 0px;
 }
 
 .school-degree {
