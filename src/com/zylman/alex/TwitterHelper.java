@@ -21,6 +21,7 @@ import twitter4j.TwitterException;
 public class TwitterHelper {
 	private static Cache cache = null;
 	private static final int MAX_PAGES = Integer.MAX_VALUE;
+	private static final int ENTRIES_PER_PAGE = 20;
 	
 	private static void instantiateCache() throws CacheException {
 		if (cache == null) {
@@ -39,7 +40,7 @@ public class TwitterHelper {
 		
 		if (feedData != null) return feedData;
 		
-		Feed feed = get(user, 1, 20);
+		Feed feed = get(user, 1);
 		String feedString = feed.toString();
 		cache.put("twitter-" + user.getEmail(), feedString);
 		if (!feed.isEmpty()) return feedString;
@@ -77,7 +78,7 @@ public class TwitterHelper {
 				}
 			}
 			
-			String result = get(user, 1, 20).toString();
+			String result = get(user, 1).toString();
 			
 			instantiateCache();
 			
@@ -90,7 +91,7 @@ public class TwitterHelper {
 		}
 	}
 	
-	private static Feed get(User user, int page, int count) {
+	public static Feed get(User user, int page) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		
 		Feed feed = new Feed();
@@ -99,7 +100,7 @@ public class TwitterHelper {
 		q.setClass(FeedEntry.class);
 		q.setFilter("user == " + user.getTwitterID());
 		q.setOrdering("time descending");
-		q.setRange((page - 1) * count, page * count);
+		q.setRange((page - 1) * ENTRIES_PER_PAGE, page * ENTRIES_PER_PAGE);
 		
 		@SuppressWarnings("unchecked")
 		Collection<FeedEntry> entries = (Collection<FeedEntry>) q.execute();
