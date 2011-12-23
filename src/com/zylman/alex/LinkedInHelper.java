@@ -8,8 +8,6 @@ import javax.jdo.PersistenceManager;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.LinkedInApi;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Response;
 import org.scribe.model.Token;
@@ -35,17 +33,17 @@ public class LinkedInHelper {
 		}
 	}
 	
-	public static LinkedInProfile get(String user) throws CacheException {
+	public static LinkedInProfile get(User user) throws CacheException {
 		instantiateCache();
 			
-		String profileData = (String) cache.get(user);
+		String profileData = (String) cache.get("linkedin-" + user.getEmail());
 		
 		if (profileData != null) return new LinkedInProfile(user, profileData);
 		
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		LinkedInProfile profile;
 		try {
-			LinkedInProfile storedProfile = pm.getObjectById(LinkedInProfile.class, user);
+			LinkedInProfile storedProfile = pm.getObjectById(LinkedInProfile.class, user.getEmail());
 			profile = storedProfile;
 		} catch (JDOObjectNotFoundException e) {
 			profile = refresh(user);
@@ -53,15 +51,15 @@ public class LinkedInHelper {
 			pm.close();
 		}
 		
-		cache.put(user, profile.getProfile());
+		cache.put("linkedin-" + user.getEmail(), profile.getProfile());
 		return profile;
 	}
 	
-	public static LinkedInProfile refresh(String user) throws CacheException {
+	public static LinkedInProfile refresh(User user) throws CacheException {
 		instantiateCache();
 		
 		String result = getFreshData(user);
-		cache.put("linkedin", result);
+		cache.put("linkedin-" + user.getEmail(), result);
 		
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
@@ -73,12 +71,8 @@ public class LinkedInHelper {
 		return new LinkedInProfile(user, result);
 	}
 	
-	private static String getFreshData(String user) {
-		OAuthService service = new ServiceBuilder()
-	        .provider(LinkedInApi.class)
-	        .apiKey(HiddenData.getApiKey())
-	        .apiSecret(HiddenData.getApiSecret())
-	        .build();   
+	private static String getFreshData(User user) {
+		OAuthService service = HiddenData.getLinkedInService();
 		StringBuilder result = new StringBuilder();
 		
 		/*
@@ -100,7 +94,7 @@ public class LinkedInHelper {
 		result.append("Trading the Request Token for an Access Token...");
 		Token accessToken = service.getAccessToken(requestToken, verifier);
 		*/
-		Token accessToken = HiddenData.getToken();
+		Token accessToken = user.getLinkedInToken();
 		
 		OAuthRequest request = new OAuthRequest(Verb.GET, PROFILE_URL);
 		service.signRequest(accessToken, request);

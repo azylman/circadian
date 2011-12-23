@@ -7,7 +7,8 @@ import org.restlet.resource.Get;
 public class LinkedInRecacheResource extends ServerResource {
 	@Get public String retrieve() {
 		try {
-			return LinkedInHelper.refresh("linkedin").getProfile();
+			User user = HiddenData.getAdmin();
+			return LinkedInHelper.refresh(user).getProfile();
 		} catch (CacheException e) {
 			return "CacheException: " + e.getMessage();
 		}

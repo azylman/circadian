@@ -4,6 +4,7 @@ import org.restlet.resource.Get;
 
 public class TwitterResource extends ServerResource {
 	@Get public String retrieve() {
-		return TwitterHelper.get("amzylman");
+		User user = HiddenData.getAdmin();
+		return TwitterHelper.get(user);
 	}
 }

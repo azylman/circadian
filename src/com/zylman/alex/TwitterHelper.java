@@ -29,25 +29,25 @@ public class TwitterHelper {
 		}
 	}
 	
-	public static String get(String user) {
+	public static String get(User user) {
 		try {
 			instantiateCache();
 		} catch (CacheException e) {
 			return "CacheException: " + e.getMessage();
 		}
-		String feedData = (String) cache.get(user);
+		String feedData = (String) cache.get("twitter-" + user.getEmail());
 		
 		if (feedData != null) return feedData;
 		
 		Feed feed = get(user, 1, 20);
 		String feedString = feed.toString();
-		cache.put(user, feedString);
+		cache.put("twitter-" + user.getEmail(), feedString);
 		if (!feed.isEmpty()) return feedString;
 		
 		return refresh(user);
 	}
 	
-	public static String refresh(String user) {
+	public static String refresh(User user) {
 		Twitter twitter = HiddenData.getTwitter();
 		try {
 			PersistenceManager pm = PMF.get().getPersistenceManager();
@@ -55,11 +55,11 @@ public class TwitterHelper {
 			boolean run = true;
 			int page = 1;
 			while (run) {
-				List<Status> tweets = twitter.getUserTimeline(user, new Paging(page, 20));
+				List<Status> tweets = twitter.getUserTimeline(user.twitterID, new Paging(page, 20));
 				
 				boolean createdObjects = false;
 				for (Status tweet : tweets) {
-					FeedEntry newEntry = new FeedEntry(user, Long.toString(tweet.getId()), tweet.getText(), tweet.getCreatedAt());
+					FeedEntry newEntry = new FeedEntry(user.getTwitterID(), Long.toString(tweet.getId()), tweet.getText(), tweet.getCreatedAt());
 					
 					try {
 						@SuppressWarnings("unused")
@@ -81,7 +81,7 @@ public class TwitterHelper {
 			
 			instantiateCache();
 			
-			cache.put(user, result);
+			cache.put("twitter-" + user.getEmail(), result);
 			return result;
 		} catch (TwitterException e) {
 			return "TwitterException: " + e.getMessage();
@@ -90,14 +90,14 @@ public class TwitterHelper {
 		}
 	}
 	
-	private static Feed get(String user, int page, int count) {
+	private static Feed get(User user, int page, int count) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		
 		Feed feed = new Feed();
 		
 		Query q = pm.newQuery();
 		q.setClass(FeedEntry.class);
-		q.setFilter("user == " + user);
+		q.setFilter("user == " + user.getTwitterID());
 		q.setOrdering("time descending");
 		q.setRange((page - 1) * count, page * count);
 		

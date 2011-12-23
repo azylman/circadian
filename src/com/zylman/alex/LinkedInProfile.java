@@ -15,8 +15,8 @@ public class LinkedInProfile {
 	@Persistent
 	private Text profile;
 	
-	LinkedInProfile(String user, String profile) {
-		this.user = user;
+	LinkedInProfile(User user, String profile) {
+		this.user = user.email;
 		this.profile = new Text(profile);
 	}
 	
