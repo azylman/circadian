@@ -12,6 +12,12 @@ import org.json.JSONObject;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Get;
 
+import com.zylman.alex.feed.Feed;
+import com.zylman.alex.feed.FeedEntry;
+import com.zylman.alex.feed.FeedHelper;
+import com.zylman.alex.profile.LinkedInHelper;
+import com.zylman.alex.profile.LinkedInProfile;
+
 import freemarker.template.SimpleSequence;
 
 public class Me extends ServerResource {
@@ -30,17 +36,17 @@ public class Me extends ServerResource {
 	}
 	
 	private SimpleSequence parseFeed(User user) {
-		Feed feed = TwitterHelper.get(user, 1);
+		Feed feed = FeedHelper.get(user, 1);
 		SimpleSequence parsedFeed = new SimpleSequence();
 
-		for (FeedEntry entry : feed.entries) {
+		for (FeedEntry entry : feed.getEntries()) {
 			Map<String, String> parsedEntry = new HashMap<String, String>();
 
-			String content = entry.content.getValue();
+			String content = entry.getContent();
 			content = replaceURLWithHTMLLinks(content);
 			parsedEntry.put("content", content);
-			parsedEntry.put("time", entry.time.toString());
-			parsedEntry.put("source", Integer.toString(entry.source));
+			parsedEntry.put("time", entry.getTime().toString());
+			parsedEntry.put("source", Integer.toString(entry.getSource()));
 
 			parsedFeed.add(parsedEntry);
 		}

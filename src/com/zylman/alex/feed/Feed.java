@@ -1,4 +1,4 @@
-package com.zylman.alex;
+package com.zylman.alex.feed;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import com.google.gson.Gson;
 
 public class Feed {
-	List<FeedEntry> entries = new ArrayList<FeedEntry>();
+	private List<FeedEntry> entries = new ArrayList<FeedEntry>();
 	
 	public void add(FeedEntry entry) {
 		entries.add(entry);
@@ -19,5 +19,9 @@ public class Feed {
 	
 	public boolean isEmpty() {
 		return entries.isEmpty();
+	}
+	
+	public List<FeedEntry> getEntries() {
+		return entries;
 	}
 }

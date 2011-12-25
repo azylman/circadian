@@ -1,8 +1,12 @@
-package com.zylman.alex;
+package com.zylman.alex.profile;
 
 import net.sf.jsr107cache.CacheException;
 
 import org.restlet.resource.Get;
+
+import com.zylman.alex.HiddenData;
+import com.zylman.alex.ServerResource;
+import com.zylman.alex.User;
 
 public class LinkedInResource extends ServerResource {
 	@Get public String retrieve() {

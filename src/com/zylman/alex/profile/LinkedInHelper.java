@@ -1,4 +1,4 @@
-package com.zylman.alex;
+package com.zylman.alex.profile;
 
 import java.util.Collections;
 
@@ -13,6 +13,10 @@ import org.scribe.model.Response;
 import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.oauth.OAuthService;
+
+import com.zylman.alex.HiddenData;
+import com.zylman.alex.PMF;
+import com.zylman.alex.User;
 
 import net.sf.jsr107cache.Cache;
 import net.sf.jsr107cache.CacheException;

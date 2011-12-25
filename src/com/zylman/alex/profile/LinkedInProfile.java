@@ -1,10 +1,11 @@
-package com.zylman.alex;
+package com.zylman.alex.profile;
 
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 import com.google.appengine.api.datastore.Text;
+import com.zylman.alex.User;
 
 @PersistenceCapable
 public class LinkedInProfile {

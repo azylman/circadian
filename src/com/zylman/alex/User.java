@@ -5,27 +5,25 @@ import java.util.Map;
 
 import org.scribe.model.Token;
 
+import com.zylman.alex.feed.source.FeedException;
+import com.zylman.alex.feed.source.FeedSource;
+
 public class User {
 	public String email;
-	public String twitterID;
 	public String linkedInToken;
 	public String linkedInSecret;
-	private Map<Integer, Source> sources = new HashMap<Integer, Source>();
+	private Map<Integer, FeedSource> sources = new HashMap<Integer, FeedSource>();
 	
 	public Token getLinkedInToken() {
 		return new Token(linkedInSecret, linkedInToken);
-	}
-	
-	public String getTwitterID() {
-		return twitterID;
 	}
 	
 	public String getEmail() {
 		return email;
 	}
 	
-	public void addSource(int id, String name, String link) {
-		sources.put(id, new Source(name, link));
+	public void addSource(int id, FeedSource source) {
+		sources.put(id, source);
 	}
 	
 	public String getSourcesString() {
@@ -34,7 +32,7 @@ public class User {
 		
 		sourceNames.append("var sourceName = new Array();\n");
 		sourceLinks.append("var sourceLinks = new Array();\n");
-		for (Map.Entry<Integer, Source> source : sources.entrySet()) {
+		for (Map.Entry<Integer, FeedSource> source : sources.entrySet()) {
 			sourceNames.append("sourceName[" + source.getKey() + "] = \"" + source.getValue().getName() + "\";\n");
 			sourceLinks.append("sourceLinks[" + source.getKey() + "] = \"" + source.getValue().getLink() + "\";\n");
 		}
@@ -42,21 +40,9 @@ public class User {
 		return sourceNames.toString() + "\n" + sourceLinks.toString();
 	}
 	
-	public class Source {
-		private String name;
-		private String link;
-		
-		public Source(String name, String link) {
-			this.name = name;
-			this.link = link;
-		}
-		
-		public String getName() {
-			return name;
-		}
-		
-		public String getLink() {
-			return link;
+	public void refreshSources() throws FeedException {
+		for (FeedSource source : sources.values()) {
+			source.refresh(this);
 		}
 	}
 }

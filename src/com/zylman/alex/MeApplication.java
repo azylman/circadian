@@ -5,6 +5,11 @@ import org.restlet.Restlet;
 import org.restlet.ext.freemarker.ContextTemplateLoader;
 import org.restlet.routing.Router;
 
+import com.zylman.alex.feed.FeedRecacheResource;
+import com.zylman.alex.feed.FeedResource;
+import com.zylman.alex.profile.LinkedInRecacheResource;
+import com.zylman.alex.profile.LinkedInResource;
+
 import freemarker.template.Configuration;
 
 public class MeApplication extends Application {
@@ -19,9 +24,9 @@ public class MeApplication extends Application {
         router.attach("/", Me.class);
         router.attach("/linkedin", LinkedInResource.class);
         router.attach("/linkedin/recache", LinkedInRecacheResource.class);
-        router.attach("/twitter", TwitterResource.class);
-        router.attach("/twitter/recache", TwitterRecacheResource.class);
-        router.attach("/twitter/{pageNum}", TwitterResource.class);
+        router.attach("/twitter", FeedResource.class);
+        router.attach("/twitter/recache", FeedRecacheResource.class);
+        router.attach("/twitter/{pageNum}", FeedResource.class);
         router.attach("/recache", Recache.class);
 
         return router;
