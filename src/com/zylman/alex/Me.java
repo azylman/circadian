@@ -35,6 +35,11 @@ public class Me extends ServerResource {
 		return text.replaceAll(pattern, "<a href=\"$1\">$1</a>");
 	}
 	
+	/**
+	 * Parses a user's feed into a format readable by FreeMarker. Used for loading data server-side.
+	 * Currently unused - just using AJAX loading, client-side.
+	 */
+	@SuppressWarnings("unused")
 	private SimpleSequence parseFeed(User user) {
 		Feed feed = FeedHelper.get(user, 1);
 		SimpleSequence parsedFeed = new SimpleSequence();
@@ -54,6 +59,15 @@ public class Me extends ServerResource {
 		return parsedFeed;
 	}
 	
+	/**
+	 * Parses a user's profile into a format readable by FreeMarker. Used for loading data server-side.
+	 * Currently unused - just using AJAX loading, client-side.
+	 * 
+	 * NOTE: This function is currently INCOMPLETE and will not work. Halfway through implementation I
+	 * decided that it wasn't worth it to load data server-side but didn't want to get rid of it in case
+	 * I changed my mind. - az, 12/25/2011
+	 */
+	@SuppressWarnings("unused")
 	private Map<String, Object> parseProfile(User user) throws JSONException {
 		Map<String, Object> parsedProfile = new HashMap<String, Object>();
 		try {
