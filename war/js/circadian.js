@@ -62,9 +62,6 @@ function updateFeed(feed) {
 }
 
 function addFeedEntry(entry) {
-	var source = new Array();
-	source["0"] = "Twitter";
-	
 	var result = "<div class='feed-entry'>";
 	
 	result += "<div class='feed-entry-content'>";
@@ -77,9 +74,10 @@ function addFeedEntry(entry) {
 	result += entry["time"];
 	result += "</span>";
 	
-	result += "<span class='feed-entry-source'>";
-	result += source[entry["source"]];
-	result += "</span>";
+	var sourceNum = entry["source"];
+	result += "<a href='" + sourceLinks[sourceNum] + "' class='feed-entry-source'>";
+	result += sourceName[sourceNum];
+	result += "</a>";
 	
 	result += "</span>";
 	
