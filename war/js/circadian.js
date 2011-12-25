@@ -12,15 +12,17 @@ $(document).ready(function() {
 				url: "/linkedin/recache",
 				type: "get",
 				dataType: "json",
-				success: function(data) {
-					updateProfile(data.person, true);
+				statusCode: {
+					200: function(data) {
+						updateProfile(data.person, true);
+					}
 				}
 			});
 		}
 	});
 	
 	$.ajax({
-		url: "/twitter",
+		url: "/twitter/" + pageNum,
 		type: "get",
 		dataType: "json",
 		success: function(data) {
@@ -28,11 +30,14 @@ $(document).ready(function() {
 			
 			// Refresh the cache for freshness.
 			$.ajax({
-				url: "/twitter/recache",
+				url: "/twitter/recache/" + pageNum,
 				type: "get",
 				dataType: "json",
-				success: function(data) {
-					updateFeed(data);
+				statusCode: {
+					// Update the page only if there was a change
+					200: function(data) {
+						updateFeed(data);
+					} 
 				}
 			});
 		}

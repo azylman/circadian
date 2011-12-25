@@ -50,7 +50,9 @@ public class LinkedInHelper {
 			LinkedInProfile storedProfile = pm.getObjectById(LinkedInProfile.class, user.getEmail());
 			profile = storedProfile;
 		} catch (JDOObjectNotFoundException e) {
-			profile = refresh(user);
+			refresh(user);
+			// The cache is now filled.
+			profile = get(user);
 		} finally {
 			pm.close();
 		}
@@ -59,9 +61,10 @@ public class LinkedInHelper {
 		return profile;
 	}
 	
-	public static LinkedInProfile refresh(User user) throws CacheException {
+	public static boolean refresh(User user) throws CacheException {
 		instantiateCache();
 		
+		String oldResult = (String) cache.get("linkedin-" + user.getEmail());
 		String result = getFreshData(user);
 		cache.put("linkedin-" + user.getEmail(), result);
 		
@@ -72,7 +75,7 @@ public class LinkedInHelper {
 			pm.close();
 		}
 		
-		return new LinkedInProfile(user, result);
+		return result.equals(oldResult);
 	}
 	
 	private static String getFreshData(User user) {

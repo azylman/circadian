@@ -10,8 +10,9 @@ import com.zylman.alex.User;
 public class FeedResource extends ServerResource {
 	@Get public Representation retrieve() {
 		User user = HiddenData.getAdmin();
-		String pageNum = getAttribute("pageNum");
-		if (pageNum == null) return createJSONRepresentation(FeedHelper.get(user));
-		return createJSONRepresentation(FeedHelper.get(user, Integer.parseInt(pageNum)).toString());
+		String pageNumAttr = getAttribute("pageNum");
+		int pageNum = pageNumAttr == null || pageNumAttr.equals("1") ? 1 : Integer.parseInt(pageNumAttr);
+		if (pageNum == 1) return createJSONRepresentation(FeedHelper.get(user));
+		return createJSONRepresentation(FeedHelper.get(user, pageNum).toString());
 	}
 }

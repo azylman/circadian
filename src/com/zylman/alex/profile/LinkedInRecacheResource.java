@@ -2,6 +2,7 @@ package com.zylman.alex.profile;
 
 import net.sf.jsr107cache.CacheException;
 
+import org.restlet.data.Status;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.resource.Get;
@@ -14,7 +15,13 @@ public class LinkedInRecacheResource extends ServerResource {
 	@Get public Representation retrieve() {
 		try {
 			User user = HiddenData.getAdmin();
-			return createJSONRepresentation(LinkedInHelper.refresh(user).getProfile());
+			boolean same = LinkedInHelper.refresh(user);
+			if (!same) {
+				return createJSONRepresentation(LinkedInHelper.get(user).getProfile());
+			} else {
+				getResponse().setStatus(Status.SUCCESS_NO_CONTENT);
+				return new StringRepresentation("");
+			}
 		} catch (CacheException e) {
 			return new StringRepresentation("CacheException: " + e.getMessage());
 		}

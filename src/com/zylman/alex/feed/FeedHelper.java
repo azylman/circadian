@@ -41,24 +41,30 @@ public class FeedHelper {
 		cache.put("twitter-" + user.getEmail(), feedString);
 		if (!feed.isEmpty()) return feedString;
 		
-		return refresh(user);
-	}
-	
-	public static String refresh(User user) {
 		try {
-			user.refreshSources();
-			
-			String result = get(user, 1).toString();
-			
-			instantiateCache();
-			
-			cache.put("twitter-" + user.getEmail(), result);
-			return result;
+			refresh(user);
 		} catch (FeedException e) {
 			return "FeedException: " + e.getMessage();
 		} catch (CacheException e) {
 			return "CacheException: " + e.getMessage();
 		}
+		
+		// The cache exists now, refresh.
+		return get(user);
+	}
+	
+	public static boolean refresh(User user) throws FeedException, CacheException {
+		user.refreshSources();
+		
+		String result = get(user, 1).toString();
+		
+		instantiateCache();
+		
+		String oldResult = (String) cache.get("twitter-" + user.getEmail());
+		
+		cache.put("twitter-" + user.getEmail(), result);
+		
+		return result.equals(oldResult);
 	}
 	
 	public static Feed get(User user, int page) {

@@ -24,8 +24,11 @@ public class Me extends ServerResource {
 	@Get public Representation toText() throws IOException, JSONException, CacheException {
 		User user = HiddenData.getAdmin();
 		
+		String pageNum = getAttribute("pageNum");
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("sources", user.getSourcesString());
+		map.put("pageNum", pageNum == null || pageNum.isEmpty() ? "1" : pageNum);
 
 		return populateTemplate(map, "user.html");
 	}
