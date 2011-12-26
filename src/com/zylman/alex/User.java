@@ -9,15 +9,21 @@ import com.zylman.alex.feed.source.FeedException;
 import com.zylman.alex.feed.source.FeedSource;
 
 public class User {
+	private String name;
 	private String email;
 	private String linkedInToken;
 	private String linkedInSecret;
 	private Map<Integer, FeedSource> sources = new HashMap<Integer, FeedSource>();
 	
-	public User(String email, String linkedInToken, String linkedInSecret) {
+	public User(String name, String email, String linkedInToken, String linkedInSecret) {
+		this.name = name;
 		this.email = email;
 		this.linkedInToken = linkedInToken;
 		this.linkedInSecret = linkedInSecret;
+	}
+	
+	public String getName() {
+		return name;
 	}
 	
 	public Token getLinkedInToken() {
