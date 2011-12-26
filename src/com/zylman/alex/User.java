@@ -1,6 +1,7 @@
 package com.zylman.alex;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.scribe.model.Token;
@@ -14,6 +15,7 @@ public class User {
 	private String linkedInToken;
 	private String linkedInSecret;
 	private Map<Integer, FeedSource> sources = new HashMap<Integer, FeedSource>();
+	private Map<String, String> links = new LinkedHashMap<String, String>();
 	
 	public User(String name, String email, String linkedInToken, String linkedInSecret) {
 		this.name = name;
@@ -27,7 +29,7 @@ public class User {
 	}
 	
 	public Token getLinkedInToken() {
-		return new Token(linkedInSecret, linkedInToken);
+		return new Token(linkedInToken, linkedInSecret);
 	}
 	
 	public String getEmail() {
@@ -56,5 +58,13 @@ public class User {
 		for (FeedSource source : sources.values()) {
 			source.refresh(this);
 		}
+	}
+	
+	public void addLink(String name, String link) {
+		links.put(name, link);
+	}
+	
+	public Map<String, String> getLinks() {
+		return links;
 	}
 }

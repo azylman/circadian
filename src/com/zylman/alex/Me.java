@@ -29,8 +29,23 @@ public class Me extends ServerResource {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("sources", user.getSourcesString());
 		map.put("pageNum", pageNum == null || pageNum.isEmpty() ? "1" : pageNum);
+		map.put("name", user.getName());
+		map.put("links", parseLinks(user.getLinks()));
 
 		return populateTemplate(map, "user.html");
+	}
+	
+	private SimpleSequence parseLinks(Map<String, String> links) {
+		SimpleSequence result = new SimpleSequence();
+		
+		for (Map.Entry<String, String> link : links.entrySet()) {
+			Map<String, String> linkAttributes = new HashMap<String, String>();
+			linkAttributes.put("name", link.getKey());
+			linkAttributes.put("link", link.getValue());
+			result.add(linkAttributes);
+		}
+		
+		return result;
 	}
 
 	private String replaceURLWithHTMLLinks(String text) {
