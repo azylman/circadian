@@ -17,7 +17,7 @@ public class LinkedInProfile {
 	private Text profile;
 	
 	LinkedInProfile(User user, String profile) {
-		this.user = user.email;
+		this.user = user.getEmail();
 		this.profile = new Text(profile);
 	}
 	
