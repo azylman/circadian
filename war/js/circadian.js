@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	// Pull LinkedIn data from the cache for speed.
 	$.ajax({
-		url: "/linkedin",
+		url: "/profile",
 		type: "get",
 		dataType: "json",
 		success: function(data) {
@@ -9,7 +9,7 @@ $(document).ready(function() {
 			
 			// Refresh the cache for freshness.
 			$.ajax({
-				url: "/linkedin/recache",
+				url: "/profile/recache",
 				type: "get",
 				dataType: "json",
 				statusCode: {
@@ -22,7 +22,7 @@ $(document).ready(function() {
 	});
 	
 	$.ajax({
-		url: "/twitter/" + pageNum,
+		url: "/feed/" + pageNum,
 		type: "get",
 		dataType: "json",
 		success: function(data) {
@@ -30,7 +30,7 @@ $(document).ready(function() {
 			
 			// Refresh the cache for freshness.
 			$.ajax({
-				url: "/twitter/recache/" + pageNum,
+				url: "/feed/recache/" + pageNum,
 				type: "get",
 				dataType: "json",
 				statusCode: {

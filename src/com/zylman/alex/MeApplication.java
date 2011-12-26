@@ -22,12 +22,12 @@ public class MeApplication extends Application {
         Router router = new Router(getContext());
 
         router.attach("/", Me.class);
-        router.attach("/linkedin", LinkedInResource.class);
-        router.attach("/linkedin/recache", LinkedInRecacheResource.class);
-        router.attach("/twitter", FeedResource.class);
-        router.attach("/twitter/recache", FeedRecacheResource.class);
-        router.attach("/twitter/recache/{pageNum}", FeedRecacheResource.class);
-        router.attach("/twitter/{pageNum}", FeedResource.class);
+        router.attach("/profile", LinkedInResource.class);
+        router.attach("/profile/recache", LinkedInRecacheResource.class);
+        router.attach("/feed", FeedResource.class);
+        router.attach("/feed/recache", FeedRecacheResource.class);
+        router.attach("/feed/recache/{pageNum}", FeedRecacheResource.class);
+        router.attach("/feed/{pageNum}", FeedResource.class);
         router.attach("/recache", Recache.class);
         router.attach("/{pageNum}", Me.class);
 
