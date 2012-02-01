@@ -19,7 +19,14 @@ body {
 	padding-top: 40px !important;
 }
 
-body > .container {
+
+#pattern {
+	background-image: url(/images/white_leather.png);
+	background-repeat: repeat;
+	background-attachment: fixed;
+}
+
+#pattern > .container {
 	padding-left: 20px;
 	padding-right: 20px;
 	
