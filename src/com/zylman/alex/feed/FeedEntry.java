@@ -6,6 +6,8 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import twitter4j.Status;
+
 import com.google.appengine.api.datastore.Text;
 import com.zylman.alex.User;
 
@@ -33,6 +35,10 @@ public class FeedEntry {
 		this.content = new Text(content);
 		this.time = time;
 		this.source = 0;
+	}
+	
+	public FeedEntry(User user, Status tweet) {
+		this(user, "tweet-" + Long.toString(tweet.getId()), tweet.getText(), tweet.getCreatedAt());
 	}
 	
 	public String getId() {
