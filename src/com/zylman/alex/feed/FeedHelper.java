@@ -32,13 +32,13 @@ public class FeedHelper {
 		} catch (CacheException e) {
 			return "CacheException: " + e.getMessage();
 		}
-		String feedData = (String) cache.get("twitter-" + user.getEmail());
+		String feedData = (String) cache.get("feed-" + user.getEmail());
 		
 		if (feedData != null) return feedData;
 		
 		Feed feed = get(user, 1);
 		String feedString = feed.toString();
-		cache.put("twitter-" + user.getEmail(), feedString);
+		cache.put("feed-" + user.getEmail(), feedString);
 		if (!feed.isEmpty()) return feedString;
 		
 		try {
@@ -60,9 +60,9 @@ public class FeedHelper {
 		
 		instantiateCache();
 		
-		String oldResult = (String) cache.get("twitter-" + user.getEmail());
+		String oldResult = (String) cache.get("feed-" + user.getEmail());
 		
-		cache.put("twitter-" + user.getEmail(), result);
+		cache.put("feed-" + user.getEmail(), result);
 		
 		return result.equals(oldResult);
 	}

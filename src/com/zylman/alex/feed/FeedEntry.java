@@ -16,7 +16,7 @@ import com.zylman.alex.blogger.BloggerPost;
 public class FeedEntry {
 	@PrimaryKey
 	@Persistent
-	private String tweetId;
+	private String id;
 	
 	@Persistent
 	private String user;
@@ -32,7 +32,7 @@ public class FeedEntry {
 	
 	public FeedEntry(User user, String id, String content, Date time) {
 		this.user = user.getEmail();
-		this.tweetId = id;
+		this.id = id;
 		this.content = new Text(content);
 		this.time = time;
 	}
@@ -46,7 +46,7 @@ public class FeedEntry {
 	}
 	
 	public String getId() {
-		return tweetId;
+		return id;
 	}
 	
 	public String getUser() {
@@ -72,7 +72,6 @@ public class FeedEntry {
 	private static String combinePostTitleAndText(BloggerPost post) {
 		return post.getTitle() + "<br/><br/>" + post.getText();
 	}
-	
 	
 	public static String getBloggerId(BloggerPost post) {
 		return "blogger-" + post.getId();
