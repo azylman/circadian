@@ -93,7 +93,7 @@ public class Me extends ServerResource {
 			JSONObject linkedInProfile = new JSONObject(linkedIn.getProfile());
 			linkedInProfile = linkedInProfile.getJSONObject("person");
 			
-			// Why the fuck does org.json not just return null when the key doesn't exist?
+			// Why does org.json not just return null when the key doesn't exist?
 			// There's NO reason to throw an exception that's going to be ignored nine times out of ten.
 			try {
 				String name = linkedInProfile.getString("first-name") + " " + linkedInProfile.getString("last-name");
