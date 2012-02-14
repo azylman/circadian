@@ -70,7 +70,7 @@ public class FeedEntry {
 	}
 	
 	private static String combinePostTitleAndText(BloggerPost post) {
-		return post.getTitle() + "<br/><br/>" + post.getText();
+		return "<div class=\"blogger-title\">" + post.getTitle() + "</div><br/>" + post.getText();
 	}
 	
 	public static String getBloggerId(BloggerPost post) {
