@@ -20,7 +20,7 @@ public class TwitterSource extends FeedSource {
 	String twitterName;
 	
 	public TwitterSource(String twitterName) {
-		super("Twitter", "https://https://twitter.com/#!/" + twitterName);
+		super("Twitter", "https://twitter.com/#!/" + twitterName);
 		this.twitterName = twitterName;
 	}
 	
@@ -39,6 +39,7 @@ public class TwitterSource extends FeedSource {
 				boolean createdObjects = false;
 				for (Status tweet : tweets) {
 					FeedEntry newEntry = new FeedEntry(user, tweet);
+					newEntry.setSource(getSourceNum());
 					
 					try {
 						@SuppressWarnings("unused")

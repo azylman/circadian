@@ -10,6 +10,7 @@ import twitter4j.Status;
 
 import com.google.appengine.api.datastore.Text;
 import com.zylman.alex.User;
+import com.zylman.alex.blogger.BloggerPost;
 
 @PersistenceCapable
 public class FeedEntry {
@@ -34,11 +35,14 @@ public class FeedEntry {
 		this.tweetId = id;
 		this.content = new Text(content);
 		this.time = time;
-		this.source = 0;
 	}
 	
 	public FeedEntry(User user, Status tweet) {
 		this(user, "tweet-" + Long.toString(tweet.getId()), tweet.getText(), tweet.getCreatedAt());
+	}
+	
+	public FeedEntry(User user, BloggerPost post) {
+		this(user, getBloggerId(post), combinePostTitleAndText(post), post.getDate());
 	}
 	
 	public String getId() {
@@ -53,11 +57,24 @@ public class FeedEntry {
 		return source;
 	}
 	
+	public void setSource(int source) {
+		this.source = source;
+	}
+	
 	public String getContent() {
 		return content.getValue();
 	}
 	
 	public Date getTime() {
 		return time;
+	}
+	
+	private static String combinePostTitleAndText(BloggerPost post) {
+		return post.getTitle() + "<br/><br/>" + post.getText();
+	}
+	
+	
+	public static String getBloggerId(BloggerPost post) {
+		return "blogger-" + post.getId();
 	}
 }

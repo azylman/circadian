@@ -5,6 +5,7 @@ import com.zylman.alex.User;
 public abstract class FeedSource {
 	private String name;
 	private String link;
+	private int sourceNum;
 	
 	public FeedSource(String name, String link) {
 		this.name = name;
@@ -19,5 +20,13 @@ public abstract class FeedSource {
 	
 	public String getLink() {
 		return link;
+	}
+	
+	public int getSourceNum() {
+		return sourceNum;
+	}
+	
+	public void setSourceNum(int sourceNum) {
+		this.sourceNum = sourceNum;
 	}
 }

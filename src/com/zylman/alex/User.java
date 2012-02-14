@@ -36,7 +36,9 @@ public class User {
 		return email;
 	}
 	
-	public void addSource(int id, FeedSource source) {
+	public void addSource(FeedSource source) {
+		int id = sources.size();
+		source.setSourceNum(id);
 		sources.put(id, source);
 	}
 	
