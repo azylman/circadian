@@ -25,24 +25,28 @@ public class FeedEntry {
 	private int source;
 	
 	@Persistent
+	private Text title;
+	
+	@Persistent
 	private Text content;
 	
 	@Persistent
 	private Date time;
 	
-	public FeedEntry(User user, String id, String content, Date time) {
+	private FeedEntry(User user, String id, String title, String content, Date time) {
 		this.user = user.getEmail();
 		this.id = id;
+		this.title = new Text(title);
 		this.content = new Text(content);
 		this.time = time;
 	}
 	
 	public FeedEntry(User user, Status tweet) {
-		this(user, "tweet-" + Long.toString(tweet.getId()), tweet.getText(), tweet.getCreatedAt());
+		this(user, "tweet-" + Long.toString(tweet.getId()), "", tweet.getText(), tweet.getCreatedAt());
 	}
 	
 	public FeedEntry(User user, BloggerPost post) {
-		this(user, getBloggerId(post), combinePostTitleAndText(post), post.getDate());
+		this(user, getBloggerId(post), post.getTitle(), post.getText(), post.getDate());
 	}
 	
 	public String getId() {
@@ -61,16 +65,16 @@ public class FeedEntry {
 		this.source = source;
 	}
 	
+	public String getTitle() {
+		return title.getValue();
+	}
+	
 	public String getContent() {
 		return content.getValue();
 	}
 	
 	public Date getTime() {
 		return time;
-	}
-	
-	private static String combinePostTitleAndText(BloggerPost post) {
-		return "<div class=\"blogger-title\">" + post.getTitle() + "</div>" + post.getText();
 	}
 	
 	public static String getBloggerId(BloggerPost post) {

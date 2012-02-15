@@ -74,6 +74,11 @@ function addFeedEntry(entry) {
 	var result = "<div class='feed-entry'>";
 	
 	result += "<div class='feed-entry-content'>";
+	
+	if (entry["title"]["value"] != "") {
+		result += "<h2>" + entry["title"]["value"] + "</h2>";
+	}
+	
 	result += replaceURLWithHTMLLinks(entry["content"]["value"]);
 	result += "</div>";
 	
