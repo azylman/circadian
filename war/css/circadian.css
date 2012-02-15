@@ -98,6 +98,18 @@ h1 {
 	font-style: italic;
 }
 
+#toggle-buttons {
+	text-align: center;
+	margin-top: 5px;
+}
+
+#expand-profile {
+}
+
+#collapse-profile {
+	display: none;
+}
+
 #expanded-profile {
 	display: none;
 }

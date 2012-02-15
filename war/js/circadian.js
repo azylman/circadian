@@ -42,6 +42,20 @@ $(document).ready(function() {
 			});
 		}
 	});
+	
+	$("#expand-profile").click(function() {
+		$("#expanded-profile").slideDown('medium', function() {
+			$("#expand-profile").css('display', 'none');
+			$("#collapse-profile").css('display', 'inline-block');
+		});
+	});
+	
+	$("#collapse-profile").click(function() {
+		$("#expanded-profile").slideUp('medium', function() {
+			$("#collapse-profile").css('display', 'none');
+			$("#expand-profile").css('display', 'inline-block');
+		});
+	});
 });
 
 function replaceURLWithHTMLLinks(text) {
