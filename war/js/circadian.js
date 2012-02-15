@@ -44,7 +44,15 @@ $(document).ready(function() {
 	});
 	
 	$("#toggle-profile").click(function() {
-		$("#expanded-profile").slideToggle('medium', function() {});
+		$("#expanded-profile").slideToggle('medium', function() {
+			if($("#arrow-down").is(":visible")) {
+				$("#arrow-down").hide();
+				$("#arrow-up").show();
+			} else {
+				$("#arrow-up").hide();
+				$("#arrow-down").show();
+			};
+		});
 	});
 });
 

@@ -1,3 +1,26 @@
+#arrow-up {
+	width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid rgba(0, 0, 0, .2);
+	
+	position: relative;
+	display: none;
+	top: -20px;
+}
+
+#arrow-down {
+	width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 5px solid rgba(0, 0, 0, .2);
+	
+	position: relative;
+	top: 11px;
+}
+
 body, html {
 	color: #222 !important;
 	
@@ -106,13 +129,11 @@ h2 {
 	margin-top: 5px;
 	margin-bottom: 10px;
 	line-height: 5px;
-	border-top: 3px solid rgba(0, 0, 0, .2);
-	border-bottom: 2px solid rgba(0, 0, 0, 0);
+	border-top: 4px solid rgba(0, 0, 0, .2);
 }
 
 #toggle-profile:hover {
-	border-top: 5px solid rgba(0, 0, 0, .3);
-	border-bottom: 0px;
+	border-top: 4px solid rgba(0, 0, 0, .3);
 }
 
 #expand-profile {
