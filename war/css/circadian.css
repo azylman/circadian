@@ -3,7 +3,7 @@
 	height: 0;
 	border-left: 5px solid transparent;
 	border-right: 5px solid transparent;
-	border-bottom: 5px solid rgba(0, 0, 0, .2);
+	border-bottom: 5px solid rgba(0, 0, 0, .3);
 	
 	position: relative;
 	display: none;
@@ -15,7 +15,7 @@
 	height: 0;
 	border-left: 5px solid transparent;
 	border-right: 5px solid transparent;
-	border-top: 5px solid rgba(0, 0, 0, .2);
+	border-top: 5px solid rgba(0, 0, 0, .3);
 	
 	position: relative;
 	top: 11px;
