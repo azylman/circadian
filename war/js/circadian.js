@@ -75,7 +75,7 @@ function addFeedEntry(entry) {
 	
 	result += "<div class='feed-entry-content'>";
 	
-	if (entry["title"]["value"] != "") {
+	if (entry["title"] != undefined && entry["title"]["value"] != "") {
 		result += "<h2>" + entry["title"]["value"] + "</h2>";
 	}
 	
