@@ -45,16 +45,20 @@ h1 {
 	font-weight: normal !important;
 }
 
-#profile h1 {
-	padding-top: 15px !important;
-	font-size: 12px;
-	line-height: 10px;
-	margin-top: 10px;
+h2 {
+	font-weight: normal !important;
+	line-height: 10px !important;
 	text-transform: uppercase;
 	letter-spacing: 1px;
+	font-size: 12px !important;
 	margin-bottom: 5px !important;
+	padding-left: 5px !important;
+}
+
+#profile h2 {
+	padding-top: 15px !important;
+	margin-top: 10px;
 	padding-bottom: 0px !important;
-	padding-left: 5px;
 	text-decoration: underline;
 }
 
@@ -197,10 +201,4 @@ h1 {
 }
 
 .blogger-title {
-	line-height: 10px;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	font-size: 12px;
-	margin-bottom: 5px;
-	padding-left: 5px;
 }
