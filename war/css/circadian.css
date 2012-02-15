@@ -97,11 +97,18 @@ h1 {
 	font-style: italic;
 }
 
-#toggle-buttons {
+#toggle-profile {
 	text-align: center;
 	margin-top: 5px;
-	padding-bottom: 15px;
-	border-bottom: 1px solid rgba(0, 0, 0, .2);
+	margin-bottom: 10px;
+	line-height: 5px;
+	border-top: 3px solid rgba(0, 0, 0, .2);
+	border-bottom: 2px solid rgba(0, 0, 0, 0);
+}
+
+#toggle-profile:hover {
+	border-top: 5px solid rgba(0, 0, 0, .3);
+	border-bottom: 0px;
 }
 
 #expand-profile {
