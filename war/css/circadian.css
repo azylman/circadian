@@ -78,6 +78,10 @@ h1 {
 	line-height: 36px;
 }
 
+#summary {
+	margin-top: 15px;
+}
+
 #specialties {
 	margin-top: 10px;
 }
@@ -109,7 +113,6 @@ h1 {
 }
 
 .position-summary {
-	
 }
 
 .school-entry {
