@@ -98,6 +98,10 @@ h1 {
 	font-style: italic;
 }
 
+#expanded-profile {
+	display: none;
+}
+
 .position-entry {
 	margin-bottom: 10px;
 }
