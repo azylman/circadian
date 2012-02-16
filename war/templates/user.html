@@ -109,6 +109,15 @@
 								</div>
 								<div id="expand-profile" class="profile-toggle"></div>
 								<div id="collapse-profile" class="profile-toggle"></div>
+								<div id="projects">
+									<h3>Projects</h3>
+									<#list projects as project>
+									<div class="project">
+										<h4><a href="${project.url}" class="project-name">${project.name}</a></h4>
+										${project.description}
+									</div>
+									</#list>
+								</div>
 							</div>
 						</div>
 					</div>

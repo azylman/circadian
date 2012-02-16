@@ -40,9 +40,9 @@ body {
 }
 
 h1 {
+	font-weight: normal !important;
 	margin-bottom: 5px !important;
 	padding-bottom: 5px !important;
-	font-weight: normal !important;
 }
 
 h2 {
@@ -53,6 +53,18 @@ h2 {
 	font-size: 12px !important;
 	margin-bottom: 5px !important;
 	padding-left: 5px !important;
+}
+
+h3 {
+	font-weight: normal !important;
+	font-size: 22px !important;
+	line-height: 26px !important;
+}
+
+h4 {
+	font-weight: normal !important;
+	font-size: 18px !important;
+	line-height: 22px !important;
 }
 
 #profile h2 {
@@ -197,6 +209,17 @@ h2 {
 .school-activities:before {
 	content: "Activities: ";
 	font-style: italic;
+}
+
+#projects {
+	margin-top: 20px;
+	padding: 10px;
+}
+
+.project {
+	padding-top: 10px;
+	padding-bottom: 5px;
+	padding-left: 10px;
 }
 
 .feed-entry {

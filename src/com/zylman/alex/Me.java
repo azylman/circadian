@@ -2,6 +2,7 @@ package com.zylman.alex;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import net.sf.jsr107cache.CacheException;
@@ -12,6 +13,7 @@ import org.json.JSONObject;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Get;
 
+import com.zylman.alex.User.Project;
 import com.zylman.alex.feed.Feed;
 import com.zylman.alex.feed.FeedEntry;
 import com.zylman.alex.feed.FeedHelper;
@@ -31,6 +33,7 @@ public class Me extends ServerResource {
 		map.put("pageNum", pageNum == null || pageNum.isEmpty() ? "1" : pageNum);
 		map.put("name", user.getName());
 		map.put("links", parseLinks(user.getLinks()));
+		map.put("projects", parseProjects(user.getProjects()));
 
 		return populateTemplate(map, "user.html");
 	}
@@ -43,6 +46,20 @@ public class Me extends ServerResource {
 			linkAttributes.put("name", link.getKey());
 			linkAttributes.put("link", link.getValue());
 			result.add(linkAttributes);
+		}
+		
+		return result;
+	}
+	
+	private SimpleSequence parseProjects(List<Project> projects) {
+		SimpleSequence result = new SimpleSequence();
+		
+		for (Project project : projects) {
+			Map<String, String> projectAttributes = new HashMap<String, String>();
+			projectAttributes.put("name", project.getName());
+			projectAttributes.put("description", project.getDescription());
+			projectAttributes.put("url", project.getUrl());
+			result.add(projectAttributes);
 		}
 		
 		return result;
