@@ -227,17 +227,29 @@ function createPosition(position) {
 
 function getDate(time) {
 	var result = "";
+	var day = false;
+	var month = false;
+	var year = false;
 	if (time == null) return result;
 	if (time["day"] != null) {
 		result += time["day"] += "-";
+		day = true;
 	}
 	if (time["month"] != null) {
 		result += time["month"] += "-";
+		month = true;
 	}
 	if (time["year"] != null) {
 		result += time["year"];
+		year = true;
 	}
-	return date("M Y", result);
+	if (day && month && year) {
+		return date("D M Y", result);
+	} else if (month && year) {
+		return date("M Y", result);
+	} else if (year) {
+		return date("Y", result);
+	}
 }
 
 function compileEducation(education) {
