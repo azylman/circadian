@@ -12,11 +12,10 @@ import com.zylman.alex.feed.Feed;
 import com.zylman.alex.feed.FeedEntry;
 import com.zylman.alex.feed.FeedHelper;
 
-public class BloggerSource extends FeedSource {
+public class BloggerSource implements FeedSource {
 	private String blogId;
 
 	public BloggerSource(String blogId, String blogAddress) {
-		super("Blogger", blogAddress);
 		this.blogId = blogId;
 	}
 

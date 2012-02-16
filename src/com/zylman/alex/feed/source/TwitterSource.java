@@ -15,12 +15,11 @@ import com.zylman.alex.PMF;
 import com.zylman.alex.User;
 import com.zylman.alex.feed.FeedEntry;
 
-public class TwitterSource extends FeedSource {
+public class TwitterSource implements FeedSource {
 
 	String twitterName;
 	
 	public TwitterSource(String twitterName) {
-		super("Twitter", "https://twitter.com/#!/" + twitterName);
 		this.twitterName = twitterName;
 	}
 	
@@ -41,8 +40,7 @@ public class TwitterSource extends FeedSource {
 					FeedEntry newEntry = new FeedEntry(user, tweet);
 					
 					try {
-						@SuppressWarnings("unused")
-						FeedEntry e = pm.getObjectById(FeedEntry.class, newEntry.getId());
+						pm.getObjectById(FeedEntry.class, newEntry.getId());
 					} catch (JDOObjectNotFoundException e) {
 						pm.makePersistent(newEntry);
 						createdObjects = true;
