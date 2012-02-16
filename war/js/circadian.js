@@ -98,9 +98,8 @@ function addFeedEntry(entry) {
 	result += entry["time"];
 	result += "</span>";
 	
-	var sourceNum = entry["source"];
 	result += "<a href='" + entry["url"] + "' class='feed-entry-source'>";
-	result += sourceName[sourceNum];
+	result += entry["source"];
 	result += "</a>";
 	
 	result += "</span>";

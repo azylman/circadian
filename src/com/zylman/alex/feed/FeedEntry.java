@@ -22,7 +22,7 @@ public class FeedEntry {
 	private String user;
 	
 	@Persistent
-	private int source;
+	private String source;
 	
 	@Persistent
 	private Text title;
@@ -36,13 +36,14 @@ public class FeedEntry {
 	@Persistent
 	private String url;
 	
-	private FeedEntry(User user, String id, String title, String content, Date time, String url) {
+	private FeedEntry(User user, String id, String title, String content, Date time, String url, String source) {
 		this.user = user.getEmail();
 		this.id = id;
 		this.title = new Text(title);
 		this.content = new Text(content);
 		this.time = time;
 		this.url = url;
+		this.source = source;
 	}
 	
 	public FeedEntry(User user, Status tweet) {
@@ -52,11 +53,19 @@ public class FeedEntry {
 			"",
 			tweet.getText(),
 			tweet.getCreatedAt(),
-			"https://twitter.com/#!/" + tweet.getUser().getScreenName() + "/status/" + tweet.getId());
+			"https://twitter.com/#!/" + tweet.getUser().getScreenName() + "/status/" + tweet.getId(),
+			"Twitter");
 	}
 	
 	public FeedEntry(User user, BloggerPost post) {
-		this(user, getBloggerId(post), post.getTitle(), post.getText(), post.getDate(), post.getUrl());
+		this(
+			user,
+			getBloggerId(post),
+			post.getTitle(),
+			post.getText(),
+			post.getDate(),
+			post.getUrl(),
+			"Blogger");
 	}
 	
 	public String getId() {
@@ -67,12 +76,8 @@ public class FeedEntry {
 		return user;
 	}
 	
-	public int getSource() {
+	public String getSource() {
 		return source;
-	}
-	
-	public void setSource(int source) {
-		this.source = source;
 	}
 	
 	public String getTitle() {

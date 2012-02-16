@@ -35,7 +35,6 @@ public class BloggerSource extends FeedSource {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		for (BloggerPost post : blogPosts) {
 			FeedEntry entry = new FeedEntry(user, post);
-			entry.setSource(getSourceNum());
 			pm.makePersistent(entry);
 		}
 		pm.close();

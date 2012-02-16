@@ -39,7 +39,6 @@ public class TwitterSource extends FeedSource {
 				boolean createdObjects = false;
 				for (Status tweet : tweets) {
 					FeedEntry newEntry = new FeedEntry(user, tweet);
-					newEntry.setSource(getSourceNum());
 					
 					try {
 						@SuppressWarnings("unused")

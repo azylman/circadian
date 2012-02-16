@@ -1,7 +1,6 @@
 package com.zylman.alex;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +15,7 @@ public class User {
 	private String email;
 	private String linkedInToken;
 	private String linkedInSecret;
-	private Map<Integer, FeedSource> sources = new HashMap<Integer, FeedSource>();
+	private List<FeedSource> sources = new ArrayList<FeedSource>();
 	private Map<String, String> links = new LinkedHashMap<String, String>();
 	List<Project> projects = new ArrayList<Project>();
 	
@@ -64,27 +63,11 @@ public class User {
 	}
 	
 	public void addSource(FeedSource source) {
-		int id = sources.size();
-		source.setSourceNum(id);
-		sources.put(id, source);
-	}
-	
-	public String getSourcesString() {
-		StringBuilder sourceNames = new StringBuilder();
-		StringBuilder sourceLinks = new StringBuilder();
-		
-		sourceNames.append("var sourceName = new Array();\n");
-		sourceLinks.append("var sourceLinks = new Array();\n");
-		for (Map.Entry<Integer, FeedSource> source : sources.entrySet()) {
-			sourceNames.append("sourceName[" + source.getKey() + "] = \"" + source.getValue().getName() + "\";\n");
-			sourceLinks.append("sourceLinks[" + source.getKey() + "] = \"" + source.getValue().getLink() + "\";\n");
-		}
-		
-		return sourceNames.toString() + "\n" + sourceLinks.toString();
+		sources.add(source);
 	}
 	
 	public void refreshSources() throws FeedException {
-		for (FeedSource source : sources.values()) {
+		for (FeedSource source : sources) {
 			source.refresh(this);
 		}
 	}

@@ -29,7 +29,6 @@ public class Me extends ServerResource {
 		String pageNum = getAttribute("pageNum");
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("sources", user.getSourcesString());
 		map.put("pageNum", pageNum == null || pageNum.isEmpty() ? "1" : pageNum);
 		map.put("name", user.getName());
 		map.put("links", parseLinks(user.getLinks()));
@@ -86,7 +85,7 @@ public class Me extends ServerResource {
 			content = replaceURLWithHTMLLinks(content);
 			parsedEntry.put("content", content);
 			parsedEntry.put("time", entry.getTime().toString());
-			parsedEntry.put("source", Integer.toString(entry.getSource()));
+			parsedEntry.put("source", entry.getSource());
 
 			parsedFeed.add(parsedEntry);
 		}
