@@ -128,18 +128,22 @@ h4 {
 }
 
 #expand-profile:after {
+	font-weight: bold;
+	font-size: 10px;
+	color: rgba(0, 0, 0, .4);
 	position: absolute;
-	content: ' ';
+	content: 'MORE';
 	height: 0;
 	width: 0;
 	
-	border: 5px solid transparent;
-	border-top-color: rgba(0, 0, 0, .2);
-	left: 48%;
+	/*border: 5px solid transparent;
+	border-top-color: rgba(0, 0, 0, .2);*/
+	left: 45%;
+	top: -12px;
 }
 
 #expand-profile:hover:after {
-	border-top-color: rgba(0, 0, 0, .3);;
+	color: rgba(0, 0, 0, .5);
 }
 
 #collapse-profile:after {
