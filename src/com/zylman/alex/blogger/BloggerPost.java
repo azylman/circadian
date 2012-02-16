@@ -14,16 +14,23 @@ public class BloggerPost {
 	private String title;
 	private String text;
 	private Date date;
+	private String url;
 	
 	public BloggerPost(JSONObject post) throws ParseException, JSONException {
-		this(post.getString("id"), post.getString("title"), post.getString("content"), post.getString("published"));
+		this(
+			post.getString("id"),
+			post.getString("title"),
+			post.getString("content"),
+			post.getString("published"),
+			post.getString("url"));
 	}
 	
-	public BloggerPost(String id, String title, String text, String date) throws ParseException {
+	public BloggerPost(String id, String title, String text, String date, String url) throws ParseException {
 		this.id = id;
 		this.title = title;
 		this.text = text;
 		this.date = DatatypeConverter.parseDateTime(date).getTime();
+		this.url = url;
 	}
 	
 	public String getId() {
@@ -42,11 +49,16 @@ public class BloggerPost {
 		return date;
 	}
 	
+	public String getUrl() {
+		return url;
+	}
+	
 	class Builder {
 		private String id;
 		private String title;
 		private String text;
 		private String date;
+		private String url;
 		
 		Builder() {}
 		
@@ -70,8 +82,13 @@ public class BloggerPost {
 			return this;
 		}
 		
+		public Builder setUrl(String url) {
+			this.url = url;
+			return this;
+		}
+		
 		public BloggerPost build() throws ParseException {
-			return new BloggerPost(id, title, text, date);
+			return new BloggerPost(id, title, text, date, url);
 		}
 	}
 }

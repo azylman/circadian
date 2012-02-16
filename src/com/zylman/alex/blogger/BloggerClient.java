@@ -86,7 +86,7 @@ public class BloggerClient {
 	private URL constructGetPostsUrl(String blogId, String pageToken) throws MalformedURLException {
 		StringBuilder url = new StringBuilder(
 				"https://www.googleapis.com/blogger/v2/blogs/1880134641060961962/posts?");
-		url.append("fields=items(content%2Cid%2Cpublished%2Ctitle)%2CnextPageToken%2CprevPageToken");
+		url.append("fields=items(content%2Cid%2Cpublished%2Ctitle%2Curl)%2CnextPageToken%2CprevPageToken");
 		url.append("&pp=1");
 		url.append("&key=");
 		url.append(HiddenData.getBloggerAPIKey());

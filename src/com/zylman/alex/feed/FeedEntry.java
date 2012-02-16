@@ -33,20 +33,30 @@ public class FeedEntry {
 	@Persistent
 	private Date time;
 	
-	private FeedEntry(User user, String id, String title, String content, Date time) {
+	@Persistent
+	private String url;
+	
+	private FeedEntry(User user, String id, String title, String content, Date time, String url) {
 		this.user = user.getEmail();
 		this.id = id;
 		this.title = new Text(title);
 		this.content = new Text(content);
 		this.time = time;
+		this.url = url;
 	}
 	
 	public FeedEntry(User user, Status tweet) {
-		this(user, "tweet-" + Long.toString(tweet.getId()), "", tweet.getText(), tweet.getCreatedAt());
+		this(
+			user,
+			"tweet-" + Long.toString(tweet.getId()),
+			"",
+			tweet.getText(),
+			tweet.getCreatedAt(),
+			"https://twitter.com/#!/" + tweet.getUser().getScreenName() + "/status/" + tweet.getId());
 	}
 	
 	public FeedEntry(User user, BloggerPost post) {
-		this(user, getBloggerId(post), post.getTitle(), post.getText(), post.getDate());
+		this(user, getBloggerId(post), post.getTitle(), post.getText(), post.getDate(), post.getUrl());
 	}
 	
 	public String getId() {
@@ -75,6 +85,10 @@ public class FeedEntry {
 	
 	public Date getTime() {
 		return time;
+	}
+	
+	public String getUrl() {
+		return url;
 	}
 	
 	public static String getBloggerId(BloggerPost post) {
