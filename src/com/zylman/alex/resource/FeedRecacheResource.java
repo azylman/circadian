@@ -1,4 +1,4 @@
-package com.zylman.alex.feed;
+package com.zylman.alex.resource;
 
 import net.sf.jsr107cache.CacheException;
 
@@ -8,8 +8,8 @@ import org.restlet.representation.StringRepresentation;
 import org.restlet.resource.Get;
 
 import com.zylman.alex.HiddenData;
-import com.zylman.alex.ServerResource;
 import com.zylman.alex.User;
+import com.zylman.alex.feed.FeedHelper;
 import com.zylman.alex.feed.source.FeedException;
 
 public class FeedRecacheResource extends ServerResource {

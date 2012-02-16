@@ -1,4 +1,4 @@
-package com.zylman.alex;
+package com.zylman.alex.resource;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -13,6 +13,8 @@ import org.json.JSONObject;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Get;
 
+import com.zylman.alex.HiddenData;
+import com.zylman.alex.User;
 import com.zylman.alex.User.Project;
 import com.zylman.alex.feed.Feed;
 import com.zylman.alex.feed.FeedEntry;

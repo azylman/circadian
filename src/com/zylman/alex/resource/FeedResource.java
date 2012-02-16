@@ -1,11 +1,11 @@
-package com.zylman.alex.feed;
+package com.zylman.alex.resource;
 
 import org.restlet.representation.Representation;
 import org.restlet.resource.Get;
 
 import com.zylman.alex.HiddenData;
-import com.zylman.alex.ServerResource;
 import com.zylman.alex.User;
+import com.zylman.alex.feed.FeedHelper;
 
 public class FeedResource extends ServerResource {
 	@Get public Representation retrieve() {

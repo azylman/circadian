@@ -5,10 +5,12 @@ import org.restlet.Restlet;
 import org.restlet.ext.freemarker.ContextTemplateLoader;
 import org.restlet.routing.Router;
 
-import com.zylman.alex.feed.FeedRecacheResource;
-import com.zylman.alex.feed.FeedResource;
-import com.zylman.alex.profile.LinkedInRecacheResource;
-import com.zylman.alex.profile.LinkedInResource;
+import com.zylman.alex.resource.FeedRecacheResource;
+import com.zylman.alex.resource.FeedResource;
+import com.zylman.alex.resource.LinkedInRecacheResource;
+import com.zylman.alex.resource.LinkedInResource;
+import com.zylman.alex.resource.Me;
+import com.zylman.alex.resource.Recache;
 
 import freemarker.template.Configuration;
 

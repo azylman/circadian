@@ -1,4 +1,4 @@
-package com.zylman.alex;
+package com.zylman.alex.resource;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -10,6 +10,8 @@ import org.restlet.data.MediaType;
 import org.restlet.ext.freemarker.TemplateRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
+
+import com.zylman.alex.MeApplication;
 
 public class ServerResource extends org.restlet.resource.ServerResource {
 	public String getAttribute(String attr) {
