@@ -29,7 +29,6 @@ public class MeApplication extends Application {
         router.attach("/feed/recache/{pageNum}", FeedRecacheResource.class);
         router.attach("/feed/{pageNum}", FeedResource.class);
         router.attach("/recache", Recache.class);
-        router.attach("/bloggerFeed", BloggerFeed.class);
         
         // MUST BE LAST
         router.attach("/{pageNum}", Me.class);
