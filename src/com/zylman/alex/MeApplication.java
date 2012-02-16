@@ -10,7 +10,7 @@ import com.zylman.alex.resource.FeedResource;
 import com.zylman.alex.resource.LinkedInRecacheResource;
 import com.zylman.alex.resource.LinkedInResource;
 import com.zylman.alex.resource.UserResource;
-import com.zylman.alex.resource.Recache;
+import com.zylman.alex.resource.KeepAliveResource;
 
 import freemarker.template.Configuration;
 
@@ -30,7 +30,7 @@ public class MeApplication extends Application {
         router.attach("/feed/recache", FeedRecacheResource.class);
         router.attach("/feed/recache/{pageNum}", FeedRecacheResource.class);
         router.attach("/feed/{pageNum}", FeedResource.class);
-        router.attach("/recache", Recache.class);
+        router.attach("/keepalive", KeepAliveResource.class);
         
         // MUST BE LAST
         router.attach("/{pageNum}", UserResource.class);
