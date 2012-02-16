@@ -200,11 +200,11 @@ function compilePositions(positions) {
 function createPosition(position) {
 	var result = "<div class='position-entry'>";
 	
-	result += "<div class='position-name'>";
+	result += "<h3>";
 	result += position["title"];
 	result += " @ ";
 	result += position["company"]["name"];
-	result += "</div>";
+	result += "</h3>";
 
 	result += "<div class='position-date'>";
 	result += getDate(position["start-date"]);

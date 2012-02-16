@@ -65,44 +65,46 @@
 										<div id="headline"></div>
 									</div>
 								</div>
-								<div>
-									<div id="summary"></div>
-								</div>
-								<div>
-									<div id="skills"></div>
-								</div>
-								<div id="expanded-profile">
+								<div id="profile-body">
 									<div>
-										<h2>Education</h2>
-										<div id="educations"></div>
+										<div id="summary"></div>
 									</div>
 									<div>
-										<h2>Experience</h2>
-										<div id="positions"></div>
+										<div id="skills"></div>
 									</div>
-									<div>
-										<h2>Honors</h2>
-										<div id="honors"></div>
-									</div>
-									<div>
-										<h2>Interests</h2>
-										<div id="interests"></div>
-									</div>
-									<div>
-										<h2>Publications</h2>
-										<div id="publications"></div>
-									</div>
-									<div>
-										<h2>Patents</h2>
-										<div id="patents"></div>
-									</div>
-									<div>
-										<h2>Languages</h2>
-										<div id="languages"></div>
-									</div>
-									<div>
-										<h2>Certifications</h2>
-										<div id="certifications"></div>
+									<div id="expanded-profile">
+										<div>
+											<h2>Education</h2>
+											<div id="educations"></div>
+										</div>
+										<div>
+											<h2>Experience</h2>
+											<div id="positions"></div>
+										</div>
+										<div>
+											<h2>Honors</h2>
+											<div id="honors"></div>
+										</div>
+										<div>
+											<h2>Interests</h2>
+											<div id="interests"></div>
+										</div>
+										<div>
+											<h2>Publications</h2>
+											<div id="publications"></div>
+										</div>
+										<div>
+											<h2>Patents</h2>
+											<div id="patents"></div>
+										</div>
+										<div>
+											<h2>Languages</h2>
+											<div id="languages"></div>
+										</div>
+										<div>
+											<h2>Certifications</h2>
+											<div id="certifications"></div>
+										</div>
 									</div>
 								</div>
 								<div id="expand-profile" class="profile-toggle"></div>
@@ -112,7 +114,7 @@
 									<#list projects as project>
 									<div class="project">
 										<h4><a href="${project.url}" class="project-name" target="_blank">${project.name}</a></h4>
-										${project.description}
+										<div class="project-description">${project.description}</div>
 									</div>
 									</#list>
 								</div>
