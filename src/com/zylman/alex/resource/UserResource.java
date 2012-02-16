@@ -24,7 +24,7 @@ import com.zylman.alex.profile.LinkedInProfile;
 
 import freemarker.template.SimpleSequence;
 
-public class Me extends ServerResource {
+public class UserResource extends ServerResource {
 	@Get public Representation toText() throws IOException, JSONException, CacheException {
 		User user = HiddenData.getAdmin();
 		
