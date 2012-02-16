@@ -43,15 +43,17 @@ $(document).ready(function() {
 		}
 	});
 	
-	$("#toggle-profile").click(function() {
-		$("#expanded-profile").slideToggle('medium', function() {
-			if($("#arrow-down").is(":visible")) {
-				$("#arrow-down").hide();
-				$("#arrow-up").show();
-			} else {
-				$("#arrow-up").hide();
-				$("#arrow-down").show();
-			};
+	$("#expand-profile").click(function() {
+		$("#expanded-profile").slideDown('medium', function() {
+			$("#expand-profile").hide();
+			$("#collapse-profile").show();
+		});
+	});
+	
+	$("#collapse-profile").click(function() {
+		$("#expanded-profile").slideUp('medium', function() {
+			$("#collapse-profile").hide();
+			$("#expand-profile").show();
 		});
 	});
 });
