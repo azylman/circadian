@@ -3,15 +3,15 @@
 	<application>az-profile</application>
 	<version>2</version>
 	
+	<static-files>
+		<include path="/css/*" expiration="10d" />
+		<include path="/js/*" expiration="10d" />
+		<include path="/images/*" expiration="20d" />
+	</static-files>
+	
 	<!-- Configure java.util.logging -->
 	<system-properties>
 		<property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
 	</system-properties>
-	
-	<static-files>
-		<include path="/css/*" expiration="2w" />
-		<include path="/js/*" expiration="2w" />
-		<include path="/images/*" expiration="1y" />
-	</static-files>
 	
 </appengine-web-app>
