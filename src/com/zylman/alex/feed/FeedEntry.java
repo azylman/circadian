@@ -1,5 +1,6 @@
 package com.zylman.alex.feed;
 
+import java.net.URL;
 import java.util.Date;
 
 import javax.jdo.annotations.PersistenceCapable;
@@ -7,6 +8,7 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 import twitter4j.Status;
+import twitter4j.URLEntity;
 
 import com.google.appengine.api.datastore.Text;
 import com.zylman.alex.User;
@@ -51,7 +53,7 @@ public class FeedEntry {
 			user,
 			"tweet-" + Long.toString(tweet.getId()),
 			"",
-			tweet.getText(),
+			getTwitterText(tweet),
 			tweet.getCreatedAt(),
 			"https://twitter.com/#!/" + tweet.getUser().getScreenName() + "/status/" + tweet.getId(),
 			"Twitter");
@@ -98,5 +100,19 @@ public class FeedEntry {
 	
 	public static String getBloggerId(BloggerPost post) {
 		return "blogger-" + post.getId();
+	}
+	
+	private static String getTwitterText(Status tweet) {
+		String text = tweet.getText();
+		for (URLEntity urlEntity : tweet.getURLEntities()) {
+			String textToReplace = urlEntity.getURL().toString();
+			String linkToSubstitute = createLink(urlEntity.getDisplayURL(), urlEntity.getExpandedURL());
+			text = text.replace(textToReplace, linkToSubstitute);
+		}
+		return text;
+	}
+	
+	private static String createLink(String text, URL url) {
+		return "<a href=\"" + url.toString() + "\">" + text + "</a>";
 	}
 }

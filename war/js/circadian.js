@@ -89,7 +89,8 @@ function addFeedEntry(entry) {
 		result += "<h2>" + entry["title"]["value"] + "</h2>";
 	}
 	
-	result += replaceURLWithHTMLLinks(entry["content"]["value"]);
+	//result += replaceURLWithHTMLLinks(entry["content"]["value"]);
+	result += entry["content"]["value"];
 	result += "</div>";
 	
 	result += "<span class='feed-entry-metadata'>";
